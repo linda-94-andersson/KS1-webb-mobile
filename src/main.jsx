@@ -18,15 +18,15 @@ const router = createBrowserRouter([
         path: "timer",
         element: <Timer />,
       },
+      {
+        path: "calendar",
+        element: <Calendar />,
+      },
+      {
+        path: "overview",
+        element: <Overview />,
+      },
     ],
-  },
-  {
-    path: "calendar",
-    element: <Calendar />,
-  },
-  {
-    path: "overview",
-    element: <Overview />,
   },
 ]);
 

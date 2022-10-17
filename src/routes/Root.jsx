@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Outlet, Link } from "react-router-dom";
+import { getUsers } from "../data/getUsers";
 
 function Root() {
+  useEffect(() => {
+    getUsers();
+  }, []);
+
   return (
     <>
       <p>Root</p>

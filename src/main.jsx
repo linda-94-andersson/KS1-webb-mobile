@@ -4,12 +4,29 @@ import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 import "./index.css";
 import Root from "./routes/Root";
 import ErrorPage from "./Error.page";
+import Calendar from "./routes/Calendar";
+import Timer from "./routes/Timer";
+import Overview from "./routes/Overview";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "timer",
+        element: <Timer />,
+      },
+    ],
+  },
+  {
+    path: "calendar",
+    element: <Calendar />,
+  },
+  {
+    path: "overview",
+    element: <Overview />,
   },
 ]);
 

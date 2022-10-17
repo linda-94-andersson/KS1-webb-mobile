@@ -10,8 +10,12 @@ function Root() {
           <li>
             <Link to={`timer`}>Timer Link</Link>
           </li>
-          <li><Link to={`calendar`}>Calendar Link</Link></li>
-          <li><Link to={`overview`}>Overview Link</Link></li>
+          <li>
+            <Link to={`calendar`}>Calendar Link</Link>
+          </li>
+          <li>
+            <Link to={`overview`}>Overview Link</Link>
+          </li>
         </ul>
       </nav>
       <Outlet />

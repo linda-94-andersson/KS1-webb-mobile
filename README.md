@@ -3,6 +3,13 @@
 
 ## Skills used for this project
 * WORK IN PROGRESS
+* React
+* React router-dom
+* JavaScript
+* JSON 
+* CSS
+* HTML 
+* Vite
 
 ## Requirements
 
@@ -27,20 +34,20 @@
 - Ta bort ett projekt ()
 
 ## Sidor som ska finnas:
-- Tidtagnings-sida ()
-- Kalender/historik-sida ()
-- Överblicks-sida ()
+- Tidtagnings-sida (X)
+- Kalender/historik-sida (X)
+- Överblicks-sida (X)
 
 ## För att uppnå Godkänt är kraven att:
-- Byggd med React som Frontend och json-server som "backend". ()
+- Byggd med React som Frontend och json-server som "backend". (X)
 
-- Använda React Router som router i applikationen. ()
+- Använda React Router som router i applikationen. (X)
 
 - Applikationen ska använda React Context som "Store" för applikations-bred data. ()
 
 - Samtliga krav under "En användare ska kunna" är uppfyllda. ()
 
-- Samtliga sidor under "Sidor som ska finnas" finns. ()
+- Samtliga sidor under "Sidor som ska finnas" finns. (X)
 
 - Den ska vara byggd för en mobil-webbläsare i första hand (och behöver inte innehålla styling för desktop). ()
 

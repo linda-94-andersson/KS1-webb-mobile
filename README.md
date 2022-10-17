@@ -5,6 +5,7 @@
 * WORK IN PROGRESS
 * React
 * React router-dom
+* .env
 * JavaScript
 * JSON 
 * CSS

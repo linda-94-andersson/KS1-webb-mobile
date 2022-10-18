@@ -3,10 +3,10 @@ import { getProjects } from "../data/getprojects";
 import { getTasks } from "../data/getTasks";
 
 function Overview() {
-  useEffect(() => {
-    getProjects();
-    getTasks();
-  }, []);
+  // useEffect(() => {
+  //   getProjects();
+  //   getTasks();
+  // }, []);
   return <div>Overview</div>;
 }
 

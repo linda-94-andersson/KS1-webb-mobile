@@ -14,10 +14,9 @@ export function UserProvider({ children }) {
 
   const testing = async () => {
     const data = await getUsers();
-    console.log(data, " this is useUser data");
     setUser(data);
   };
-  
+
   useEffect(() => {
     testing();
   }, []);

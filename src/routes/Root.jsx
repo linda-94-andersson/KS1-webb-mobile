@@ -6,20 +6,21 @@ function Root() {
   return (
     <>
       <UserProvider>
-        <p>Root</p>
-        <nav>
-          <ul>
-            <li>
-              <Link to={`/`}>Root & Timer Link</Link>
-            </li>
-            <li>
-              <Link to={`calendar`}>Calendar Link</Link>
-            </li>
-            <li>
-              <Link to={`overview`}>Overview Link</Link>
-            </li>
-          </ul>
-        </nav>
+        <footer>
+          <nav>
+            <ul>
+              <li>
+                <Link to={`/`}>Root & Timer Link</Link>
+              </li>
+              <li>
+                <Link to={`calendar`}>Calendar Link</Link>
+              </li>
+              <li>
+                <Link to={`overview`}>Overview Link</Link>
+              </li>
+            </ul>
+          </nav>
+        </footer>
         <Outlet />
       </UserProvider>
     </>

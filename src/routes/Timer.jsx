@@ -9,16 +9,22 @@ function Timer() {
 
   const { user, setUser } = useUser();
 
+  console.log(user, " this is user from timer");
+
   return (
     <div>
       Timer
-      <p>
+      <div>
         {user ? (
-          Object.keys(user).map((u) => <span key={u.id}>{u.name}</span>)
+          user.map((u) => (
+            <p key={u.id}>
+              <span>{u.name}</span>
+            </p>
+          ))
         ) : (
           <span>Nothing to see</span>
         )}
-      </p>
+      </div>
     </div>
   );
 }

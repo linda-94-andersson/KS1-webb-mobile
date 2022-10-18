@@ -12,9 +12,14 @@ export function UserProvider({ children }) {
 
   const value = useMemo(() => ({ user, setUser }), [user, setUser]);
 
+  const testing = async () => {
+    const data = await getUsers();
+    console.log(data, " this is useUser data");
+    setUser(data);
+  };
+  
   useEffect(() => {
-    const data = getUsers();
-    setUser(data)
+    testing();
   }, []);
 
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;

@@ -4,6 +4,7 @@
 ## Skills used for this project
 * WORK IN PROGRESS
 * React
+* React Context 
 * React router-dom
 * .env
 * JavaScript

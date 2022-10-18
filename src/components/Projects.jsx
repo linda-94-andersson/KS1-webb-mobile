@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { useProject } from "../context/ProjectContext";
+import AddProject from "./AddProject";
 
 function Projects() {
+  const [isOpen, setIsOpen] = useState(false);
+
   const { project } = useProject();
+
+  const handleAddProject = () => {
+    setIsOpen(true);
+    console.log("you clicked");
+  };
 
   return (
     <>
@@ -17,7 +25,8 @@ function Projects() {
           <h2>No projects found</h2>
         </div>
       )}
-      <button>Add new project</button>
+      <button onClick={handleAddProject}>Add new project</button>
+      {isOpen && <AddProject setIsOpen={setIsOpen} />}
     </>
   );
 }

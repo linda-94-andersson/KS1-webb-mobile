@@ -13,10 +13,7 @@ function Root() {
       <nav>
         <ul>
           <li>
-            <Link to={`/`}>Root Link</Link>
-          </li>
-          <li>
-            <Link to={`timer`}>Timer Link</Link>
+            <Link to={`/`}>Root & Timer Link</Link>
           </li>
           <li>
             <Link to={`calendar`}>Calendar Link</Link>

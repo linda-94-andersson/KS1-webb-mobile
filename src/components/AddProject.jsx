@@ -1,14 +1,20 @@
+import axios from "axios";
 import React, { useState } from "react";
-import { useProject } from "../context/ProjectContext";
+// import { v4 as uuid } from "uuid";
+import InputColor from "react-input-color";
+import { useProjectDisptach } from "../context/ProjectContext";
 import { useUser } from "../context/UserContext";
 import "./temporaryCss.css";
 
 function AddProject({ setIsOpen }) {
   const [input, setInput] = useState();
   const [selectedUser, setSelectedUser] = useState();
+  const [color, setColor] = useState({});
 
   const { user } = useUser();
-  const { project } = useProject();
+  const { dispatch } = useProjectDisptach();
+
+  // const generated_id = uuid();
 
   const handleSelectedUser = (e) => {
     setSelectedUser(e.target.value);
@@ -19,10 +25,13 @@ function AddProject({ setIsOpen }) {
   };
 
   const handleSubmit = () => {
-    console.log(input, " this is input");
-    console.log(selectedUser, " this is selectedUser");
-    // setIsOpen(false);
-    //submit data trough dispatch?
+    dispatch({
+      type: "added",
+      // id: generated_id,
+      name: input,
+      color: color.hex,
+    });
+    setIsOpen(false);
   };
 
   return (
@@ -36,9 +45,9 @@ function AddProject({ setIsOpen }) {
           <section className="modalContent">
             <form onSubmit={(e) => e.preventDefault()}>
               <select
+                required
                 name="users"
                 id="users"
-                required
                 value={selectedUser}
                 onChange={handleSelectedUser}
               >
@@ -60,8 +69,14 @@ function AddProject({ setIsOpen }) {
                 placeholder="Project name"
                 onChange={handleAddProject}
               />
-              <div>color display</div>
-              <button type="submit" onClick={handleSubmit}>
+              <br />
+              <InputColor
+                initialValue="#5e72e4"
+                onChange={setColor}
+                placement="middle"
+              />
+              <br />
+              <button type="button" onClick={handleSubmit}>
                 Add project
               </button>
             </form>

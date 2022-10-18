@@ -9,7 +9,6 @@ function Projects() {
 
   const handleAddProject = () => {
     setIsOpen(true);
-    console.log("you clicked");
   };
 
   return (

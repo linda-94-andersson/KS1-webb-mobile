@@ -5,7 +5,8 @@
 * WORK IN PROGRESS
 * React
 * React Context 
-* React router-dom
+* React Router-dom
+* React Reducer 
 * .env
 * JavaScript
 * JSON 

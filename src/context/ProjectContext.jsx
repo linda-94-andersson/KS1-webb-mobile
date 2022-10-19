@@ -6,8 +6,7 @@ import React, {
   useReducer,
   useState,
 } from "react";
-import axios from "axios";
-import getProjects from "../data/getProjects";
+import { getProjects } from "../data/getProjects";
 
 const ProjectContext = React.createContext();
 const ProjectDispatchContext = createContext(null);
@@ -21,27 +20,15 @@ export function useProjectDisptach() {
 }
 
 export function ProjectProvider({ children }) {
+  const initialState = [];
+
   const [project, setProject] = useState(null);
-  const [projects, dispatch] = useReducer(projectsReducer, project);
+  const [projects, dispatch] = useReducer(projectsReducer, initialState);
 
   function projectsReducer(project, action) {
-    const addProject = async () => {
-      const res = await axios.request({
-        method: "post",
-        url: `http://${import.meta.env.VITE_SOME_KEY}/projects`,
-        data: {
-          id: action.id,
-          name: action.name,
-          color: action.color,
-          userId: action.userId,
-        },
-      });
-      return res.data;
-    }
-
     switch (action.type) {
       case "added": {
-        return addProject();
+        return project.push();
       }
       case "changed": {
         return project.map((p) => {
@@ -73,7 +60,7 @@ export function ProjectProvider({ children }) {
   }, []);
 
   return (
-    <ProjectContext.Provider value={value}>
+    <ProjectContext.Provider value={{ value, getProjectdata }}>
       <ProjectDispatchContext.Provider value={{ dispatch }}>
         {children}
       </ProjectDispatchContext.Provider>

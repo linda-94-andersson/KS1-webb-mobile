@@ -1,26 +1,8 @@
 {
   "projects": [
     {
-      "id": 1,
-      "name": "Projekt nr 1",
-      "color": "#4E0E9F",
-      "userId": "A1"
-    },
-    {
-      "id": "a2f0bed2-6de1-4588-afdd-0ec9f73bea64",
-      "name": "Testing",
-      "color": "#5e72e4",
-      "userId": "A1"
-    },
-    {
-      "id": "6a0119c6-6793-440e-8ea7-80049d54e025",
-      "name": "New test",
-      "color": "#5e72e4",
-      "userId": "A1"
-    },
-    {
-      "id": "7f2f23a5-e829-471c-9462-7119f3c1afcd",
-      "name": "Hej",
+      "id": "975043d2-4904-4217-ac0e-fca9528f8292",
+      "name": "Nudå?",
       "color": "#5e72e4",
       "userId": "A1"
     }

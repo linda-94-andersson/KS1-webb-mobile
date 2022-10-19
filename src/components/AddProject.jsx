@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
 import InputColor from "react-input-color";
+import { addProject } from "../data/getProjects";
 import { useProjectDisptach } from "../context/ProjectContext";
 import { useUser } from "../context/UserContext";
 import "./temporaryCss.css";
@@ -23,13 +24,15 @@ function AddProject({ setIsOpen }) {
     setInput(e.target.value);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = await addProject(generated_id, input, color.hex, selectedUser);
     dispatch({
       type: "added",
-      id: generated_id,
-      name: input,
-      color: color.hex,
-      userId: selectedUser
+      id: data.id,
+      name: data.name,
+      color: data.color,
+      userId: data.userId,
     });
     setIsOpen(false);
   };
@@ -43,7 +46,7 @@ function AddProject({ setIsOpen }) {
             <h1 className="heading">Add</h1>
           </header>
           <section className="modalContent">
-            <form onSubmit={(e) => e.preventDefault()}>
+            <form onSubmit={handleSubmit}>
               <select
                 required
                 name="users"
@@ -76,9 +79,7 @@ function AddProject({ setIsOpen }) {
                 placement="middle"
               />
               <br />
-              <button type="button" onClick={handleSubmit}>
-                Add project
-              </button>
+              <button type="submit">Add project</button>
             </form>
           </section>
         </div>

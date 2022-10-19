@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import DateRangePicker from "@wojtekmaj/react-daterange-picker/dist/entry.nostyle";
-import moment from "moment";
 import { useUser } from "../context/UserContext";
 
 function Calendar() {

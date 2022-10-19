@@ -15,7 +15,7 @@ function User() {
       type: "deleted",
       id: data.id,
     });
-    await getUserData(); 
+    await getUserData();
   };
 
   const handleAddUser = () => {

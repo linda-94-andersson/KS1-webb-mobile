@@ -5,7 +5,7 @@ import AddProject from "./AddProject";
 function Projects() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { project } = useProject();
+  const { value } = useProject();
 
   const handleAddProject = () => {
     setIsOpen(true);
@@ -13,8 +13,8 @@ function Projects() {
 
   return (
     <>
-      {project ? (
-        project.map((p) => (
+      {value.project ? (
+        value.project.map((p) => (
           <div key={p.id}>
             <h2>{p.name}</h2>
           </div>

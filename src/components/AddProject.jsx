@@ -4,6 +4,7 @@ import InputColor from "react-input-color";
 import { addProject } from "../data/getProjects";
 import { useProjectDisptach } from "../context/ProjectContext";
 import { useUser } from "../context/UserContext";
+import { useProject } from "../context/ProjectContext";
 import "./temporaryCss.css";
 
 function AddProject({ setIsOpen }) {
@@ -12,6 +13,7 @@ function AddProject({ setIsOpen }) {
   const [color, setColor] = useState({});
 
   const { user } = useUser();
+  const { getProjectdata } = useProject();
   const { dispatch } = useProjectDisptach();
 
   const generated_id = uuid();
@@ -34,6 +36,7 @@ function AddProject({ setIsOpen }) {
       color: data.color,
       userId: data.userId,
     });
+    await getProjectdata();
     setIsOpen(false);
   };
 

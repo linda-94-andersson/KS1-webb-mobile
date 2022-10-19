@@ -9,7 +9,7 @@ function AddTask({ setIsOpen }) {
   const [input, setInput] = useState();
   const [selectProject, setSelectedProject] = useState();
 
-  const { value } = useProject();
+  const { projectValue } = useProject();
   const { getTaskData } = useTask();
   const { dispatch } = useTaskDispatch();
 
@@ -54,8 +54,8 @@ function AddTask({ setIsOpen }) {
                 onChange={handleSelectProject}
               >
                 <option value="">Pick a project</option>
-                {value.project ? (
-                  value.project.map((p) => (
+                {projectValue.project ? (
+                  projectValue.project.map((p) => (
                     <option key={p.id} value={p.id}>
                       {p.name}
                     </option>
@@ -71,8 +71,8 @@ function AddTask({ setIsOpen }) {
                 placeholder="Task name"
                 onChange={handleInputTask}
               />
-              {value.project ? (
-                value.project
+              {projectValue.project ? (
+                projectValue.project
                   .filter((p) => p.id === selectProject)
                   .map((p) => (
                     <div

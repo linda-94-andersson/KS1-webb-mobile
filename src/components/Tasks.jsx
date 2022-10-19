@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { useProject } from "../context/ProjectContext";
 import { useTask } from "../context/TaskContext";
 import AddTask from "./AddTask";
 
 function Tasks() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { value } = useTask();
+  const { taskValue } = useTask();
 
   const handleAddTask = () => {
     setIsOpen(true);
@@ -13,8 +14,8 @@ function Tasks() {
 
   return (
     <>
-      {value.task ? (
-        value.task.map((t) => (
+      {taskValue.task ? (
+        taskValue.task.map((t) => (
           <div key={t.id}>
             <h2>{t.name}</h2>
           </div>

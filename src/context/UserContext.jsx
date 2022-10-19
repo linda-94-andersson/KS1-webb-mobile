@@ -48,7 +48,7 @@ export function UserProvider({ children }) {
     }
   }
 
-  const value = useMemo(() => ({ user, setUser }), [user, setUser]);
+  const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
 
   const getUserData = async () => {
     const data = await getUsers();
@@ -60,7 +60,7 @@ export function UserProvider({ children }) {
   }, []);
 
   return (
-    <UserContext.Provider value={{ value, getUserData }}>
+    <UserContext.Provider value={{ userValue, getUserData }}>
       <UserDispatchContext.Provider value={{ dispatch }}>
         {children}
       </UserDispatchContext.Provider>

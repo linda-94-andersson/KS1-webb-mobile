@@ -10,7 +10,7 @@ export function useTimelog() {
 export function TimelogProvider({ children }) {
   const [timeLog, setTimeLog] = useState(null);
 
-  const value = useMemo(() => ({ timeLog, setTimeLog }), [timeLog, setTimeLog]);
+  const timelogValue = useMemo(() => ({ timeLog, setTimeLog }), [timeLog, setTimeLog]);
 
   const getTimeLogData = async () => {
     const data = await getTimelogs();
@@ -22,6 +22,6 @@ export function TimelogProvider({ children }) {
   }, []);
 
   return (
-    <TimelogContext.Provider value={value}>{children}</TimelogContext.Provider>
+    <TimelogContext.Provider value={timelogValue}>{children}</TimelogContext.Provider>
   );
 }

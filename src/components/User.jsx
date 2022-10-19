@@ -5,7 +5,7 @@ import AddUser from "./AddUser";
 function User() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { value } = useUser();
+  const { userValue } = useUser();
 
   const handleAddUser = () => {
     setIsOpen(true);
@@ -13,8 +13,8 @@ function User() {
 
   return (
     <>
-      {value.user ? (
-        value.user.map((u) => (
+      {userValue.user ? (
+        userValue.user.map((u) => (
           <div key={u.id}>
             <h2>{u.name}</h2>
           </div>

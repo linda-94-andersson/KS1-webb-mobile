@@ -48,7 +48,7 @@ export function ProjectProvider({ children }) {
     }
   }
 
-  const value = useMemo(() => ({ project, setProject }), [project, setProject]);
+  const projectValue = useMemo(() => ({ project, setProject }), [project, setProject]);
 
   const getProjectdata = async () => {
     const data = await getProjects();
@@ -60,7 +60,7 @@ export function ProjectProvider({ children }) {
   }, []);
 
   return (
-    <ProjectContext.Provider value={{ value, getProjectdata }}>
+    <ProjectContext.Provider value={{ projectValue, getProjectdata }}>
       <ProjectDispatchContext.Provider value={{ dispatch }}>
         {children}
       </ProjectDispatchContext.Provider>

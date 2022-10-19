@@ -2,7 +2,7 @@ import React from "react";
 import { useUser } from "../context/UserContext";
 
 function Timer() {
-  const { value } = useUser();
+  const { userValue } = useUser();
 
   return (
     <>
@@ -22,8 +22,8 @@ function Timer() {
           <h2>datum</h2>
           <div>
             <h2>
-              {value.user ? (
-                value.user.map((u) => (
+              {userValue.user ? (
+                userValue.user.map((u) => (
                   <p key={u.id}>
                     <span>{u.name}</span>
                   </p>

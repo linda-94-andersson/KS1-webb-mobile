@@ -48,7 +48,7 @@ export function TaskProvider({ children }) {
     }
   }
 
-  const value = useMemo(() => ({ task, setTask }), [task, setTask]);
+  const taskValue = useMemo(() => ({ task, setTask }), [task, setTask]);
 
   const getTaskData = async () => {
     const data = await getTasks();
@@ -60,7 +60,7 @@ export function TaskProvider({ children }) {
   }, []);
 
   return (
-    <TaskContext.Provider value={{ value, getTaskData }}>
+    <TaskContext.Provider value={{ taskValue, getTaskData }}>
       <TaskDispatchContext.Provider value={{ dispatch }}>
         {children}
       </TaskDispatchContext.Provider>

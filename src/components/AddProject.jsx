@@ -1,6 +1,5 @@
-import axios from "axios";
 import React, { useState } from "react";
-// import { v4 as uuid } from "uuid";
+import { v4 as uuid } from "uuid";
 import InputColor from "react-input-color";
 import { useProjectDisptach } from "../context/ProjectContext";
 import { useUser } from "../context/UserContext";
@@ -14,7 +13,7 @@ function AddProject({ setIsOpen }) {
   const { user } = useUser();
   const { dispatch } = useProjectDisptach();
 
-  // const generated_id = uuid();
+  const generated_id = uuid();
 
   const handleSelectedUser = (e) => {
     setSelectedUser(e.target.value);
@@ -27,9 +26,10 @@ function AddProject({ setIsOpen }) {
   const handleSubmit = () => {
     dispatch({
       type: "added",
-      // id: generated_id,
+      id: generated_id,
       name: input,
       color: color.hex,
+      userId: selectedUser
     });
     setIsOpen(false);
   };

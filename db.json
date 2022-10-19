@@ -1,59 +1,28 @@
 {
   "projects": [
     {
-      "id": "A1",
+      "id": 1,
       "name": "Projekt nr 1",
-      "color": "#4E0E9F"
+      "color": "#4E0E9F",
+      "userId": "A1"
     },
     {
-      "id": "7d43e2b9-7e87-4063-97e0-b0cec9b35ef2",
+      "id": "a2f0bed2-6de1-4588-afdd-0ec9f73bea64",
+      "name": "Testing",
+      "color": "#5e72e4",
+      "userId": "A1"
+    },
+    {
+      "id": "6a0119c6-6793-440e-8ea7-80049d54e025",
+      "name": "New test",
+      "color": "#5e72e4",
+      "userId": "A1"
+    },
+    {
+      "id": "7f2f23a5-e829-471c-9462-7119f3c1afcd",
       "name": "Hej",
-      "color": "#5e72e4"
-    },
-    {
-      "id": "c75b3175-3470-4a08-adde-bb73048fd58a",
-      "name": "Yes?",
-      "color": "#373b52ff"
-    },
-    {
-      "name": "Nudå?",
       "color": "#5e72e4",
-      "id": "lf1Wrkh"
-    },
-    {
-      "name": "Nudå?",
-      "color": "#5e72e4",
-      "id": "Un71yq_"
-    },
-    {
-      "name": "hmm",
-      "color": "#5e72e4",
-      "id": "ZIGOUaV"
-    },
-    {
-      "name": "hmm",
-      "color": "#5e72e4",
-      "id": "Xzn-vhS"
-    },
-    {
-      "name": "DubbeL?",
-      "color": "#5e72e4",
-      "id": "dDjBqAs"
-    },
-    {
-      "name": "DubbeL?",
-      "color": "#5e72e4",
-      "id": "_jgXLeL"
-    },
-    {
-      "name": ":/",
-      "color": "#5e72e4",
-      "id": "rfPqFJZ"
-    },
-    {
-      "name": ":/",
-      "color": "#5e72e4",
-      "id": "eA4rONn"
+      "userId": "A1"
     }
   ],
   "tasks": [
@@ -65,9 +34,8 @@
   ],
   "users": [
     {
-      "id": 1,
-      "name": "Linda",
-      "projectId": "A1"
+      "id": "A1",
+      "name": "Linda"
     }
   ],
   "timelogs": [

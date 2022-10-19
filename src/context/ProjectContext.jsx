@@ -21,32 +21,27 @@ export function useProjectDisptach() {
 }
 
 export function ProjectProvider({ children }) {
-  const initialState = {
-    name: null,
-    color: null,
-  };
-
   const [project, setProject] = useState(null);
-  const [projects, dispatch] = useReducer(projectsReducer, initialState);
+  const [projects, dispatch] = useReducer(projectsReducer, project);
 
   function projectsReducer(project, action) {
-    async function addProject() {
+    const addProject = async () => {
       const res = await axios.request({
         method: "post",
         url: `http://${import.meta.env.VITE_SOME_KEY}/projects`,
-        data: { name: action.name, color: action.color },
+        data: {
+          id: action.id,
+          name: action.name,
+          color: action.color,
+          userId: action.userId,
+        },
       });
       return res.data;
     }
 
     switch (action.type) {
       case "added": {
-        addProject();
-        return {
-          ...initialState,
-          name: action.name,
-          color: action.color,
-        };
+        return addProject();
       }
       case "changed": {
         return project.map((p) => {

@@ -33,8 +33,8 @@
 - Se en lista på projekt (X)
 - Se en lista på tasks (X)
 - Ta bort en tidtagning ()
-- Ta bort en task ()
-- Ta bort ett projekt ()
+- Ta bort en task (X)
+- Ta bort ett projekt (X)
 
 ## Sidor som ska finnas:
 - Tidtagnings-sida (X)

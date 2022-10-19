@@ -19,7 +19,7 @@
     {
       "id": "975043d2-4904-4217-ac0e-fca9528f8292",
       "name": "Nudå?",
-      "color": "#5e72e4",
+      "color": "#9e99e9",
       "userId": "A1"
     },
     {
@@ -34,6 +34,16 @@
       "id": "C1",
       "name": "Task 1",
       "projectId": "B1"
+    },
+    {
+      "id": "e1324281-ce76-46d5-9531-00fc52bf0ce6",
+      "name": "Task 2",
+      "projectId": "B1"
+    },
+    {
+      "id": "ebbdcf73-16fd-4cd7-a9c4-08a3b3aa73e3",
+      "name": "Vattna barnen",
+      "projectId": "2800139d-bdd3-42bb-93fa-d368535d5b33"
     }
   ],
   "timelogs": [

@@ -22,7 +22,7 @@ function AddProject({ setIsOpen }) {
     setSelectedUser(e.target.value);
   };
 
-  const handleAddProject = (e) => {
+  const handleInputProject = (e) => {
     setInput(e.target.value);
   };
 
@@ -73,7 +73,7 @@ function AddProject({ setIsOpen }) {
                 type="text"
                 name="projectName"
                 placeholder="Project name"
-                onChange={handleAddProject}
+                onChange={handleInputProject}
               />
               <br />
               <InputColor

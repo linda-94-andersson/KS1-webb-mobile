@@ -1,5 +1,21 @@
 {
+  "users": [
+    {
+      "id": "A1",
+      "name": "User 1"
+    },
+    {
+      "id": "4326592b-00e9-4219-a6d8-9d06943d2ea9",
+      "name": "Lindish"
+    }
+  ],
   "projects": [
+    {
+      "id": "B1",
+      "name": "Project 1",
+      "color": "#5e72e4",
+      "userId": "A1"
+    },
     {
       "id": "975043d2-4904-4217-ac0e-fca9528f8292",
       "name": "Nudå?",
@@ -15,33 +31,27 @@
   ],
   "tasks": [
     {
-      "id": "B1",
-      "projectId": "A1",
-      "title": "Läsa genom Reacts nya dokumentation"
-    }
-  ],
-  "users": [
-    {
-      "id": "A1",
-      "name": "Linda"
+      "id": "C1",
+      "name": "Task 1",
+      "projectId": "B1"
     }
   ],
   "timelogs": [
     {
-      "id": "C1",
-      "taskId": "B1",
+      "id": "D1",
+      "taskId": "C1",
       "start": "2022-10-12T10:49:33.081Z",
       "end": "2022-10-12T10:49:33.081Z"
     },
     {
-      "id": "C2",
-      "taskId": "B1",
+      "id": "D2",
+      "taskId": "C1",
       "start": "2022-10-12T10:49:33.081Z",
       "end": "2022-10-12T10:49:33.081Z"
     },
     {
-      "id": "C3",
-      "taskId": "B1",
+      "id": "D3",
+      "taskId": "C1",
       "start": "2022-10-12T10:49:33.081Z",
       "end": "2022-10-12T10:49:33.081Z"
     }

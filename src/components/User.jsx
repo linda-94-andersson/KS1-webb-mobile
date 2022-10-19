@@ -1,21 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { useUser } from "../context/UserContext";
+import AddUser from "./AddUser";
 
 function User() {
-  const { user } = useUser();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const { value } = useUser();
+
+  const handleAddUser = () => {
+    setIsOpen(true);
+  };
 
   return (
     <>
-      {user ? (
-        user.map((u) => (
+      {value.user ? (
+        value.user.map((u) => (
           <div key={u.id}>
             <h2>{u.name}</h2>
           </div>
         ))
       ) : (
-        <div>No users found</div>
+        <div>
+          <h2>No users found</h2>
+        </div>
       )}
-      <button>Add new user</button>
+      <button onClick={handleAddUser}>Add new user</button>
+      {isOpen && <AddUser setIsOpen={setIsOpen} />}
     </>
   );
 }

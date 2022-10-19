@@ -11,7 +11,7 @@ function AddProject({ setIsOpen }) {
   const [selectedUser, setSelectedUser] = useState();
   const [color, setColor] = useState({});
 
-  const { user } = useUser();
+  const { value } = useUser();
   const { getProjectdata } = useProject();
   const { dispatch } = useProjectDisptach();
 
@@ -57,8 +57,8 @@ function AddProject({ setIsOpen }) {
                 onChange={handleSelectedUser}
               >
                 <option value="">Pick a user</option>
-                {user ? (
-                  user.map((u) => (
+                {value.user ? (
+                  value.user.map((u) => (
                     <option key={u.id} value={u.id}>
                       {u.name}
                     </option>

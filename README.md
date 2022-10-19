@@ -25,13 +25,13 @@
 - WORK IN PROGRESS
 
 ## En användare ska kunna:
-- Skapa ett projekt ()
-- Skapa en task knuten till ett projekt ()
+- Skapa ett projekt (X)
+- Skapa en task knuten till ett projekt (X)
 - Starta en tidtagning för en task ()
 - Stoppa en tidtagning ()
 - Se en lista på tidtagningar för ett specifikt datum ()
-- Se en lista på projekt ()
-- Se en lista på tasks ()
+- Se en lista på projekt (X)
+- Se en lista på tasks (X)
 - Ta bort en tidtagning ()
 - Ta bort en task ()
 - Ta bort ett projekt ()
@@ -46,7 +46,7 @@
 
 - Använda React Router som router i applikationen. (X)
 
-- Applikationen ska använda React Context som "Store" för applikations-bred data. ()
+- Applikationen ska använda React Context som "Store" för applikations-bred data. (X)
 
 - Samtliga krav under "En användare ska kunna" är uppfyllda. ()
 
@@ -58,9 +58,9 @@
 
 - Den ska innehålla en "huvudnavigationsmeny" fixerad på botten på skärmen, som ska användas för att gå mellan de olika sidorna i applikationen (Tidtagning, kalender, överblick t.ex.). Om innehållet på sidan scrollar, ska den fortfarande vara fixerad på botten av applikationen. Den ska även visa vilken sida som är aktiv just nu på något vis. ()
 
-- När man lägger till ett "projekt" eller en "task" ska detta göras på antingen en separat sida eller i till exempel en modal. ()
+- När man lägger till ett "projekt" eller en "task" ska detta göras på antingen en separat sida eller i till exempel en modal. (X)
 
-- "Överblick"-sidan ska innehålla två "tabbar", en för projekt och en för tasks som man ska kunna växla mellan på sidan. ()
+- "Överblick"-sidan ska innehålla två "tabbar", en för projekt och en för tasks som man ska kunna växla mellan på sidan. (X)
 
 - Tiden som visas på tidtagnings-sidan ska "ticka upp" när den är aktiv.
   (Alltså för varje sekund som går, ska den visa det på skärmen) ()
@@ -69,6 +69,6 @@
 ## För att uppnå Väl Godkänt är kraven att:
 - Kunna välja ett tidsspan istället för bara ett specifikt datum i Kalender/historiks-vyn. (Datum & Tid) ()
 
-- Kunna skapa/välja en användare och tidtagning/tasks/projekt individuella för vald användare. ()
+- Kunna skapa/välja en användare och tidtagning/tasks/projekt individuella för vald användare. (X)
 
 - Om en tidtagning är aktiv och sidan laddas om/stängs ner och öppnas upp senare, ska den återupptas och visa tiden från när den först startades. ()

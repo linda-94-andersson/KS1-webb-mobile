@@ -7,6 +7,7 @@ function Tasks() {
   const [isOpen, setIsOpen] = useState(false);
 
   const { taskValue } = useTask();
+  const { projectValue } = useProject();
 
   const handleAddTask = () => {
     setIsOpen(true);
@@ -17,7 +18,20 @@ function Tasks() {
       {taskValue.task ? (
         taskValue.task.map((t) => (
           <div key={t.id}>
-            <h2>{t.name}</h2>
+            {projectValue.project
+              .filter((p) => p.id === t.projectId)
+              .map((c) => (
+                <div
+                  key={c.id}
+                  style={{
+                    backgroundColor: c.color,
+                    width: 25,
+                    height: 25,
+                  }}
+                >
+                  <h2 style={{ marginLeft: 30, width: 300 }}>{t.name}</h2>
+                </div>
+              ))}
           </div>
         ))
       ) : (
@@ -25,6 +39,7 @@ function Tasks() {
           <h2>No tasks found</h2>
         </div>
       )}
+      <br/>
       <button onClick={handleAddTask}>Add new Tasks</button>
       {isOpen && <AddTask setIsOpen={setIsOpen} />}
     </>

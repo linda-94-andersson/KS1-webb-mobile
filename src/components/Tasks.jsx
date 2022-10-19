@@ -1,13 +1,24 @@
 import React, { useState } from "react";
 import { useProject } from "../context/ProjectContext";
-import { useTask } from "../context/TaskContext";
+import { useTask, useTaskDispatch } from "../context/TaskContext";
+import { deleteTask } from "../data/getTasks";
 import AddTask from "./AddTask";
 
 function Tasks() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { taskValue } = useTask();
+  const { taskValue, getTaskData } = useTask();
+  const { dispatch } = useTaskDispatch();
   const { projectValue } = useProject();
+
+  const handleDelete = async (id) => {
+    const data = await deleteTask(id);
+    dispatch({
+      type: "deleted",
+      id: data.id,
+    });
+    await getTaskData();
+  };
 
   const handleAddTask = () => {
     setIsOpen(true);
@@ -32,6 +43,7 @@ function Tasks() {
                   <h2 style={{ marginLeft: 30, width: 300 }}>{t.name}</h2>
                 </div>
               ))}
+            <button onClick={() => handleDelete(t.id)}>Delete</button>
           </div>
         ))
       ) : (
@@ -39,7 +51,7 @@ function Tasks() {
           <h2>No tasks found</h2>
         </div>
       )}
-      <br/>
+      <br />
       <button onClick={handleAddTask}>Add new Tasks</button>
       {isOpen && <AddTask setIsOpen={setIsOpen} />}
     </>

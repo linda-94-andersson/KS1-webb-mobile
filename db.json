@@ -13,12 +13,6 @@
       "userId": "A1"
     },
     {
-      "id": "975043d2-4904-4217-ac0e-fca9528f8292",
-      "name": "Nudå?",
-      "color": "#9e99e9",
-      "userId": "A1"
-    },
-    {
       "id": "2800139d-bdd3-42bb-93fa-d368535d5b33",
       "name": "Makissh",
       "color": "#5de3a7ff",
@@ -37,34 +31,19 @@
       "projectId": "B1"
     },
     {
-      "id": "ebbdcf73-16fd-4cd7-a9c4-08a3b3aa73e3",
-      "name": "Vattna barnen",
-      "projectId": "2800139d-bdd3-42bb-93fa-d368535d5b33"
-    },
-    {
-      "id": "5ed0cd6b-9d1d-46a8-827e-af47e73653ee",
-      "name": "hejdå?",
-      "projectId": "975043d2-4904-4217-ac0e-fca9528f8292"
-    },
-    {
       "id": "4d7c428f-55f8-4aec-8c80-841526e5fdb1",
       "name": "Äta brunch",
       "projectId": "2800139d-bdd3-42bb-93fa-d368535d5b33"
     },
     {
-      "id": "6cc0467b-0fcc-4371-9544-18328273234f",
-      "name": "Ny task 1",
-      "projectId": "fae0ba4c-7d9c-4b43-adae-7996a1851529"
+      "id": "20650753-2c28-43cf-b253-a9aef6fe6dca",
+      "name": "Tvätta händerna",
+      "projectId": "2800139d-bdd3-42bb-93fa-d368535d5b33"
     },
     {
-      "id": "754b99dd-098a-4948-92e7-c85e09e90cfa",
-      "name": "Ny task 2",
-      "projectId": "fae0ba4c-7d9c-4b43-adae-7996a1851529"
-    },
-    {
-      "id": "b294eef7-6b36-4ee9-85cd-5cc28156f50a",
-      "name": "Ny task 3",
-      "projectId": "fae0ba4c-7d9c-4b43-adae-7996a1851529"
+      "id": "dcbddb1e-adca-41b5-bac3-3e8ddee52237",
+      "name": "Vattna barnen, igen",
+      "projectId": "2800139d-bdd3-42bb-93fa-d368535d5b33"
     }
   ],
   "timelogs": [

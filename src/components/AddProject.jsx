@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
 import InputColor from "react-input-color";
 import { addProject } from "../data/getProjects";
-import { useProjectDisptach } from "../context/ProjectContext";
+import { useProject, useProjectDisptach } from "../context/ProjectContext";
 import { useUser } from "../context/UserContext";
-import { useProject } from "../context/ProjectContext";
 import "./temporaryCss.css";
 
 function AddProject({ setIsOpen }) {

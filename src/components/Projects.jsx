@@ -1,11 +1,22 @@
 import React, { useState } from "react";
-import { useProject } from "../context/ProjectContext";
+import { useProject, useProjectDisptach } from "../context/ProjectContext";
+import { deleteProject } from "../data/getProjects";
 import AddProject from "./AddProject";
 
 function Projects() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { projectValue } = useProject();
+  const { projectValue, getProjectData } = useProject();
+  const { dispatch } = useProjectDisptach();
+
+  const handleDelete = async (id) => {
+    const data = await deleteProject(id);
+    dispatch({
+      type: "deleted",
+      id: data.id,
+    });
+    await getProjectData();
+  };
 
   const handleAddProject = () => {
     setIsOpen(true);
@@ -25,6 +36,7 @@ function Projects() {
             >
               <h2 style={{ marginLeft: 30, width: 300 }}>{p.name}</h2>
             </div>
+            <button onClick={() => handleDelete(p.id)}>Delete</button>
           </div>
         ))
       ) : (

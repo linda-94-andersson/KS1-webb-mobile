@@ -19,3 +19,8 @@ export const addProject = async (id, name, color, userId) => {
     });
     return res.data;
 };
+
+export const deleteProject = async (id) => {
+    const { data } = await axios.delete(`http://${import.meta.env.VITE_SOME_KEY}/projects/${id}`);
+    return data;
+}

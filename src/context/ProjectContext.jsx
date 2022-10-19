@@ -48,19 +48,22 @@ export function ProjectProvider({ children }) {
     }
   }
 
-  const projectValue = useMemo(() => ({ project, setProject }), [project, setProject]);
+  const projectValue = useMemo(
+    () => ({ project, setProject }),
+    [project, setProject]
+  );
 
-  const getProjectdata = async () => {
+  const getProjectData = async () => {
     const data = await getProjects();
     setProject(data);
   };
 
   useEffect(() => {
-    getProjectdata();
+    getProjectData();
   }, []);
 
   return (
-    <ProjectContext.Provider value={{ projectValue, getProjectdata }}>
+    <ProjectContext.Provider value={{ projectValue, getProjectData }}>
       <ProjectDispatchContext.Provider value={{ dispatch }}>
         {children}
       </ProjectDispatchContext.Provider>

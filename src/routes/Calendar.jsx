@@ -2,7 +2,7 @@ import React from "react";
 import { useUser } from "../context/UserContext";
 
 function Calendar() {
-  const { user } = useUser();
+  const { value } = useUser();
 
   return (
     <>
@@ -16,8 +16,8 @@ function Calendar() {
         </select>
         <div>
           <h2>
-            {user ? (
-              user.map((u) => (
+            {value.user ? (
+              value.user.map((u) => (
                 <p key={u.id}>
                   <span>{u.name}</span>
                 </p>

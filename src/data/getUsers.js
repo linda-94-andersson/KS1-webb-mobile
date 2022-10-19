@@ -17,3 +17,8 @@ export const addUser = async (id, name) => {
     });
     return res.data;
 };
+
+export const deleteUser = async (id) => {
+    const { data } = await axios.delete(`http://${import.meta.env.VITE_SOME_KEY}/users/${id}`);
+    return data;
+}

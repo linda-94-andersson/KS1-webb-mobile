@@ -12,7 +12,7 @@ function AddProject({ setIsOpen }) {
   const [color, setColor] = useState({});
 
   const { userValue } = useUser();
-  const { getProjectdata } = useProject();
+  const { getProjectData } = useProject();
   const { dispatch } = useProjectDisptach();
 
   const generated_id = uuid();
@@ -25,6 +25,8 @@ function AddProject({ setIsOpen }) {
     setInput(e.target.value);
   };
 
+  //setup that same color can not be taken
+  //and to an turnery that informs the user not to use that color
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = await addProject(generated_id, input, color.hex, selectedUser);
@@ -35,7 +37,7 @@ function AddProject({ setIsOpen }) {
       color: data.color,
       userId: data.userId,
     });
-    await getProjectdata();
+    await getProjectData();
     setIsOpen(false);
   };
 

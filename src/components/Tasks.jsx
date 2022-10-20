@@ -15,7 +15,7 @@ function Tasks() {
     const data = await deleteTask(id);
     dispatch({
       type: "deleted",
-      id: data.id,
+      id: data,
     });
     await getTaskData();
   };

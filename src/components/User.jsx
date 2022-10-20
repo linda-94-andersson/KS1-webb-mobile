@@ -13,7 +13,7 @@ function User() {
     const data = await deleteUser(id);
     dispatch({
       type: "deleted",
-      id: data.id,
+      id: data,
     });
     await getUserData();
   };

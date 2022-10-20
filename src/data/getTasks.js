@@ -25,5 +25,5 @@ export const deleteTask = async (id) => {
   const { data } = await axios.delete(
     `http://${import.meta.env.VITE_SOME_KEY}/tasks/${id}`
   );
-  return data;
+  return;
 };

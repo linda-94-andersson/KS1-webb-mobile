@@ -26,5 +26,5 @@ export const deleteProject = async (id) => {
   const { data } = await axios.delete(
     `http://${import.meta.env.VITE_SOME_KEY}/projects/${id}`
   );
-  return data;
+  return;
 };

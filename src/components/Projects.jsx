@@ -13,7 +13,7 @@ function Projects() {
     const data = await deleteProject(id);
     dispatch({
       type: "deleted",
-      id: data.id,
+      id: data,
     });
     await getProjectData();
   };

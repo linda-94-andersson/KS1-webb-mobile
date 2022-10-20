@@ -40,7 +40,7 @@ export function UserProvider({ children }) {
         });
       }
       case "deleted": {
-        return users.filter((u) => u.id !== action.user.id);
+        return users.filter((u) => u !== action);
       }
       default: {
         return users;

@@ -40,7 +40,7 @@ export function ProjectProvider({ children }) {
         });
       }
       case "deleted": {
-        return projects.filter((p) => p.id !== action.id);
+        return projects.filter((p) => p.id !== action.project.id);
       }
       default: {
         return projects;

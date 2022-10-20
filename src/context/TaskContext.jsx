@@ -40,7 +40,7 @@ export function TaskProvider({ children }) {
         });
       }
       case "deleted": {
-        return tasks.filter((t) => t.id !== action.id);
+        return tasks.filter((t) => t.id !== action.task.id);
       }
       default: {
         return tasks;

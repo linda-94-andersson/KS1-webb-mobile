@@ -25,13 +25,13 @@ export function UserProvider({ children }) {
   const [user, setUser] = useState(null);
   const [users, dispatch] = useReducer(userReducer, initialState);
 
-  function userReducer(user, action) {
+  function userReducer(users, action) {
     switch (action.type) {
       case "added": {
-        return user.push();
+        return [...users, action.user];
       }
       case "changed": {
-        return user.map((u) => {
+        return users.map((u) => {
           if (u.id === action.user.id) {
             return action.user;
           } else {
@@ -40,10 +40,10 @@ export function UserProvider({ children }) {
         });
       }
       case "deleted": {
-        return user.filter((u) => u.id !== action.id);
+        return users.filter((u) => u.id !== action.id);
       }
       default: {
-        throw Error("Unknown action: " + action.type);
+        return users;
       }
     }
   }

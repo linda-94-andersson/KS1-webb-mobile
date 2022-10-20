@@ -25,13 +25,13 @@ export function ProjectProvider({ children }) {
   const [project, setProject] = useState(null);
   const [projects, dispatch] = useReducer(projectsReducer, initialState);
 
-  function projectsReducer(project, action) {
+  function projectsReducer(projects, action) {
     switch (action.type) {
       case "added": {
-        return project.push();
+        return [...projects, action.project]
       }
       case "changed": {
-        return project.map((p) => {
+        return projects.map((p) => {
           if (p.id === action.project.id) {
             return action.project;
           } else {
@@ -40,10 +40,10 @@ export function ProjectProvider({ children }) {
         });
       }
       case "deleted": {
-        return project.filter((p) => p.id !== action.id);
+        return projects.filter((p) => p.id !== action.id);
       }
       default: {
-        throw Error("Unknown action: " + action.type);
+        return projects;
       }
     }
   }

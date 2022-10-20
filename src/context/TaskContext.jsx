@@ -25,13 +25,13 @@ export function TaskProvider({ children }) {
   const [task, setTask] = useState(null);
   const [tasks, dispatch] = useReducer(taskReducer, initialState);
 
-  function taskReducer(task, action) {
+  function taskReducer(tasks, action) {
     switch (action.type) {
       case "added": {
-        return task.push();
+        return [...tasks, action.task];
       }
       case "changed": {
-        return task.map((t) => {
+        return tasks.map((t) => {
           if (t.id === action.task.id) {
             return action.task;
           } else {
@@ -40,10 +40,10 @@ export function TaskProvider({ children }) {
         });
       }
       case "deleted": {
-        return task.filter((t) => t.id !== action.id);
+        return tasks.filter((t) => t.id !== action.id);
       }
       default: {
-        throw Error("Unknown action: " + action.type);
+        return tasks;
       }
     }
   }

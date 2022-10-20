@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
 import InputColor from "react-input-color";
 import { addProject } from "../data/getProjects";
@@ -12,7 +12,7 @@ function AddProject({ setIsOpen }) {
   const [color, setColor] = useState({});
 
   const { userValue } = useUser();
-  const { getProjectData } = useProject();
+  const { projectValue, getProjectData } = useProject();
   const { dispatch } = useProjectDisptach();
 
   const generated_id = uuid();
@@ -25,10 +25,16 @@ function AddProject({ setIsOpen }) {
     setInput(e.target.value);
   };
 
-  //setup that same color can not be taken
-  //and to an turnery that informs the user not to use that color
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (
+      projectValue.project.find((p) => p.color === color.hex) &&
+      projectValue.project.find((p) => p.userId === selectedUser)
+    ) {
+      return alert("Use a diffrent color"); //Maybe do toast insted?
+    }
+
     const data = await addProject(generated_id, input, color.hex, selectedUser);
     dispatch({
       type: "added",

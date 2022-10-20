@@ -5,8 +5,8 @@
       "name": "User 1"
     },
     {
-      "id": "5309e251-4555-43b3-aa27-aac788dcf067",
-      "name": "Vincent & Makish"
+      "id": "c08b794c-b98f-407e-acf0-c7cba8f82ca2",
+      "name": "ColorUser"
     }
   ],
   "projects": [
@@ -15,18 +15,6 @@
       "name": "Project 1",
       "color": "#5e72e4",
       "userId": "A1"
-    },
-    {
-      "id": "2800139d-bdd3-42bb-93fa-d368535d5b33",
-      "name": "Makissh",
-      "color": "#5de3a7ff",
-      "userId": "A1"
-    },
-    {
-      "id": "7b8a3857-0b2e-494d-a6e4-338288e626f3",
-      "name": "Kolla Lindas kod",
-      "color": "#c28b44ff",
-      "userId": "5309e251-4555-43b3-aa27-aac788dcf067"
     }
   ],
   "tasks": [
@@ -39,31 +27,6 @@
       "id": "e1324281-ce76-46d5-9531-00fc52bf0ce6",
       "name": "Task 2",
       "projectId": "B1"
-    },
-    {
-      "id": "4d7c428f-55f8-4aec-8c80-841526e5fdb1",
-      "name": "Äta brunch",
-      "projectId": "2800139d-bdd3-42bb-93fa-d368535d5b33"
-    },
-    {
-      "id": "20650753-2c28-43cf-b253-a9aef6fe6dca",
-      "name": "Tvätta händerna",
-      "projectId": "2800139d-bdd3-42bb-93fa-d368535d5b33"
-    },
-    {
-      "id": "dcbddb1e-adca-41b5-bac3-3e8ddee52237",
-      "name": "Vattna barnen, igen",
-      "projectId": "2800139d-bdd3-42bb-93fa-d368535d5b33"
-    },
-    {
-      "id": "a1552bed-9267-4a3f-b0b4-caddb98fe807",
-      "name": "Judge hard",
-      "projectId": "7b8a3857-0b2e-494d-a6e4-338288e626f3"
-    },
-    {
-      "id": "1e6df9bc-ab7c-493b-a9ee-d017a52102dc",
-      "name": "Be amazed",
-      "projectId": "7b8a3857-0b2e-494d-a6e4-338288e626f3"
     }
   ],
   "timelogs": [

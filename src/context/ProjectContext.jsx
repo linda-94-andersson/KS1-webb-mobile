@@ -28,7 +28,7 @@ export function ProjectProvider({ children }) {
   function projectsReducer(projects, action) {
     switch (action.type) {
       case "added": {
-        return [...projects, action.project]
+        return [...projects, action.project];
       }
       case "changed": {
         return projects.map((p) => {

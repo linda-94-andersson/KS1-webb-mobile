@@ -1,23 +1,61 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
-import getTimelogs from "../data/getTimelogs";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+  useState,
+} from "react";
+import { getTimeLogs } from "../data/getTimeLogs";
 
-const TimelogContext = React.createContext();
+const TimeLogContext = React.createContext();
+const TimeLogDispatchContext = createContext(null);
 
-export function useTimelog() {
-  return useContext(TimelogContext);
+export function useTimeLog() {
+  return useContext(TimeLogContext);
 }
 
-export function TimelogProvider({ children }) {
-  const [timeLog, setTimeLog] = useState(null);
+export function useTimeLogDispatch() {
+  return useContext(TimeLogDispatchContext);
+}
 
-  const timelogValue = useMemo(
-    () => ({ timeLog, setTimeLog }),
-    [timeLog, setTimeLog]
+export function TimeLogProvider({ children }) {
+  const initialState = [];
+
+  const [timeLogs, setTimeLogs] = useState(null);
+  const [_, dispatch] = useReducer(timeLogReducer, initialState);
+
+  function timeLogReducer(timeLogs, action) {
+    switch (action.type) {
+      case "added": {
+        return [...timeLogs, action.timelogs];
+      }
+      case "changed": {
+        return timeLogs.map((tl) => {
+          if (tl.id === action.timelogs.id) {
+            return action.timelogs;
+          } else {
+            return tl;
+          }
+        });
+      }
+      case "deleted": {
+        return timeLogs.filter((tl) => tl !== action);
+      }
+      default: {
+        return timeLogs;
+      }
+    }
+  }
+
+  const timeLogValue = useMemo(
+    () => ({ timeLogs: timeLogs, setTimeLogs: setTimeLogs }),
+    [timeLogs, setTimeLogs]
   );
 
   const getTimeLogData = async () => {
-    const data = await getTimelogs();
-    setTimeLog(data);
+    const data = await getTimeLogs();
+    setTimeLogs(data);
   };
 
   useEffect(() => {
@@ -25,8 +63,10 @@ export function TimelogProvider({ children }) {
   }, []);
 
   return (
-    <TimelogContext.Provider value={timelogValue}>
-      {children}
-    </TimelogContext.Provider>
+    <TimeLogContext.Provider value={{ timeLogValue, getTimeLogData }}>
+      <TimeLogDispatchContext.Provider value={{ dispatch }}>
+        {children}
+      </TimeLogDispatchContext.Provider>
+    </TimeLogContext.Provider>
   );
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { Outlet, Link } from "react-router-dom";
 import { ProjectProvider } from "../context/ProjectContext";
 import { TaskProvider } from "../context/TaskContext";
-import { TimelogProvider } from "../context/TimelogContext";
+import { TimeLogProvider } from "../context/TimeLogContext";
 import { UserProvider } from "../context/UserContext";
 
 function Root() {
@@ -11,7 +11,7 @@ function Root() {
       <UserProvider>
         <ProjectProvider>
           <TaskProvider>
-            <TimelogProvider>
+            <TimeLogProvider>
               <footer>
                 <nav>
                   <ul>
@@ -28,7 +28,7 @@ function Root() {
                 </nav>
               </footer>
               <Outlet />
-            </TimelogProvider>
+            </TimeLogProvider>
           </TaskProvider>
         </ProjectProvider>
       </UserProvider>

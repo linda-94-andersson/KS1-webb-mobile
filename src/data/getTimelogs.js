@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getTimelogs = async () => {
+export const getTimeLogs = async () => {
   const { data } = await axios.get(
     `http://${import.meta.env.VITE_SOME_KEY}/timelogs`
   );
@@ -8,7 +8,7 @@ export const getTimelogs = async () => {
   return data;
 };
 
-export const addTimelogs = async (id, start, end, taskId) => {
+export const addTimeLogs = async (id, start, end, taskId) => {
   const res = await axios.request({
     method: "post",
     url: `http://${import.meta.env.VITE_SOME_KEY}/timelogs`,
@@ -22,14 +22,14 @@ export const addTimelogs = async (id, start, end, taskId) => {
   return res.data;
 };
 
-export const deleteTimelogs = async (id) => {
+export const deleteTimeLogs = async (id) => {
   const { data } = await axios.delete(
     `http://${import.meta.env.VITE_SOME_KEY}/timelogs/${id}`
   );
   return;
 };
 
-export const changeTimelogs = async (id, start, end) => {
+export const changeTimeLogs = async (id, start, end) => {
   const { data } = await axios.request({
     method: "patch",
     url: `http://${import.meta.env.VITE_SOME_KEY}/timelogs/${id}`,

@@ -4,6 +4,11 @@ import { ProjectProvider } from "../context/ProjectContext";
 import { TaskProvider } from "../context/TaskContext";
 import { TimeLogProvider } from "../context/TimeLogContext";
 import { UserProvider } from "../context/UserContext";
+import { Link as ReachLink, LinkBox, LinkOverlay } from "@chakra-ui/react";
+import { Icon } from "@chakra-ui/icons";
+import { MdTimer } from "react-icons/md";
+import { AiOutlineCalendar } from "react-icons/ai";
+import { BiTask } from "react-icons/bi";
 
 function Root() {
   return (
@@ -13,19 +18,25 @@ function Root() {
           <TaskProvider>
             <TimeLogProvider>
               <footer>
-                <nav>
+                <LinkBox>
                   <ul>
                     <li>
-                      <Link to={`/`}>Root & Timer Link</Link>
+                      <Link as={ReachLink} to={`/`}>
+                        <Icon as={MdTimer} />
+                      </Link>
                     </li>
                     <li>
-                      <Link to={`calendar`}>Calendar Link</Link>
+                      <Link as={ReachLink} to={`calendar`}>
+                        <Icon as={AiOutlineCalendar} />
+                      </Link>
                     </li>
                     <li>
-                      <Link to={`overview`}>Overview Link</Link>
+                      <Link as={ReachLink} to={`overview`}>
+                        <Icon as={BiTask} />
+                      </Link>
                     </li>
                   </ul>
-                </nav>
+                </LinkBox>
               </footer>
               <Outlet />
             </TimeLogProvider>

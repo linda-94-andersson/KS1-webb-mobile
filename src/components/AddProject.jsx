@@ -4,13 +4,27 @@ import InputColor from "react-input-color";
 import { addProject } from "../data/getProjects";
 import { useProject, useProjectDisptach } from "../context/ProjectContext";
 import { useUser } from "../context/UserContext";
-import "./temporaryCss.css";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton,
+  FormControl,
+  Input,
+  Button,
+  Heading,
+  Center,
+  FormLabel,
+  Select,
+  Text,
+} from "@chakra-ui/react";
 
-function AddProject({ setIsOpen }) {
+function AddProject({ isOpen, onClose, validColor, setValidColor }) {
   const [input, setInput] = useState();
   const [selectedUser, setSelectedUser] = useState();
   const [color, setColor] = useState({});
-  const [validColor, setValidColor] = useState(true);
 
   const { userValue } = useUser();
   const { projectValue, getProjectData } = useProject();
@@ -26,9 +40,8 @@ function AddProject({ setIsOpen }) {
     setInput(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleSubmit = async () => {
+    if (!input || !selectedUser) return;
     if (
       projectValue.project.find((p) => p.color === color.hex) &&
       projectValue.project.find((p) => p.userId === selectedUser)
@@ -47,20 +60,26 @@ function AddProject({ setIsOpen }) {
       userId: data.userId,
     });
     await getProjectData();
-    setIsOpen(false);
   };
 
   return (
     <>
-      <div className="darkBG" onClick={() => setIsOpen(false)} />
-      <div className="centered">
-        <div className="modal">
-          <header className="modalHeader">
-            <h1 className="heading">Add</h1>
-          </header>
-          <section className="modalContent">
-            <form onSubmit={handleSubmit}>
-              <select
+      <Modal isOpen={isOpen} onClose={onClose} size="xs">
+        <ModalOverlay
+          bg="blackAlpha.300"
+          backdropFilter="blur(10px) hue-rotate(90deg)"
+        />
+        <ModalContent>
+          <Center>
+            <ModalHeader>
+              <Heading>Add</Heading>
+            </ModalHeader>
+          </Center>
+          <ModalCloseButton />
+          <ModalBody>
+            <FormControl isRequired>
+              <FormLabel></FormLabel>
+              <Select
                 required
                 name="users"
                 id="users"
@@ -77,8 +96,10 @@ function AddProject({ setIsOpen }) {
                 ) : (
                   <option value="">No users found</option>
                 )}
-              </select>
-              <input
+              </Select>
+              <br />
+              <FormLabel></FormLabel>
+              <Input
                 required
                 type="text"
                 name="projectName"
@@ -86,18 +107,32 @@ function AddProject({ setIsOpen }) {
                 onChange={handleInputProject}
               />
               <br />
-              <InputColor
-                initialValue="#5e72e4"
-                onChange={setColor}
-                placement="middle"
-              />
-              {!validColor && <span>Please use a diffrent color</span>}
+              <Center style={{ paddingTop: 15 }}>
+                <InputColor
+                  initialValue="#5e72e4"
+                  onChange={setColor}
+                  placement="left"
+                />
+                <FormLabel style={{ marginLeft: 10 }}>Pick a color</FormLabel>
+              </Center>
               <br />
-              <button type="submit">Add project</button>
-            </form>
-          </section>
-        </div>
-      </div>
+              <Center>
+                <Button
+                  type="submit"
+                  colorScheme="blue"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleSubmit();
+                    onClose();
+                  }}
+                >
+                  Add project
+                </Button>
+              </Center>
+            </FormControl>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </>
   );
 }

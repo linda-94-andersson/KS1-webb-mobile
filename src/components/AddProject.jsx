@@ -10,6 +10,7 @@ function AddProject({ setIsOpen }) {
   const [input, setInput] = useState();
   const [selectedUser, setSelectedUser] = useState();
   const [color, setColor] = useState({});
+  const [validColor, setValidColor] = useState(true);
 
   const { userValue } = useUser();
   const { projectValue, getProjectData } = useProject();
@@ -32,8 +33,10 @@ function AddProject({ setIsOpen }) {
       projectValue.project.find((p) => p.color === color.hex) &&
       projectValue.project.find((p) => p.userId === selectedUser)
     ) {
-      return alert("Use a diffrent color"); //Maybe do toast insted?
+      return setValidColor(false);
     }
+
+    setValidColor(true);
 
     const data = await addProject(generated_id, input, color.hex, selectedUser);
     dispatch({
@@ -88,6 +91,7 @@ function AddProject({ setIsOpen }) {
                 onChange={setColor}
                 placement="middle"
               />
+              {!validColor && <span>Please use a diffrent color</span>}
               <br />
               <button type="submit">Add project</button>
             </form>

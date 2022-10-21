@@ -58,6 +58,7 @@ function AddUser({ isOpen, onClose }) {
             <FormControl isRequired>
               <FormLabel></FormLabel>
               <Input
+                required
                 type="text"
                 name="userName"
                 placeholder="User name"
@@ -66,6 +67,7 @@ function AddUser({ isOpen, onClose }) {
               <Center style={{ paddingTop: 15 }}>
                 <Button
                   type="submit"
+                  colorScheme="blue"
                   onClick={(e) => {
                     e.preventDefault();
                     handleSubmit();

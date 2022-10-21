@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Projects from "../components/Projects";
 import Tasks from "../components/Tasks";
 import User from "../components/User";
+import { Center, Heading, Text, Tabs, TabList, Tab } from "@chakra-ui/react";
 
 function Overview() {
   const [isSelUser, setIsSelUser] = useState(true);
@@ -28,23 +29,30 @@ function Overview() {
 
   return (
     <>
-      <header>
-        <h1>Overview</h1>
+      <header style={{ paddingBottom: 50 }}>
+        <Center>
+          <Heading as="h1" size="3xl">
+            Overview
+          </Heading>
+        </Center>
       </header>
       <section>
-        <nav>
-          <ul>
-            <li>
-              <button onClick={handleUsers}>Users</button>
-            </li>
-            <li>
-              <button onClick={handleProjects}>Projects</button>
-            </li>
-            <li>
-              <button onClick={handleTasks}>Tasks</button>
-            </li>
-          </ul>
-        </nav>
+        <Center>
+          <Tabs>
+            <TabList>
+              <Tab onClick={handleUsers}>
+                <Text fontSize="3xl">Users</Text>
+              </Tab>
+              <Tab onClick={handleProjects}>
+                <Text fontSize="3xl">Projects</Text>
+              </Tab>
+              <Tab onClick={handleTasks}>
+                <Text fontSize="3xl">Tasks</Text>
+              </Tab>
+            </TabList>
+          </Tabs>
+        </Center>
+        <br />
         {isSelUser && <User setIsSelUser={setIsSelUser} />}
         {isSelPro && <Projects setIsSelPro={setIsSelPro} />}
         {isSelTas && <Tasks setIsSelTas={setIsSelTas} />}

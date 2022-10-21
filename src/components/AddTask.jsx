@@ -3,9 +3,25 @@ import { v4 as uuid } from "uuid";
 import { addTask } from "../data/getTasks";
 import { useTask, useTaskDispatch } from "../context/TaskContext";
 import { useProject } from "../context/ProjectContext";
-import "./temporaryCss.css";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton,
+  FormControl,
+  Input,
+  Button,
+  Heading,
+  Center,
+  FormLabel,
+  Select,
+} from "@chakra-ui/react";
+import { Icon } from "@chakra-ui/icons";
+import { MdOutlineColorLens } from "react-icons/md";
 
-function AddTask({ setIsOpen }) {
+function AddTask({ isOpen, onClose, setValidColor }) {
   const [input, setInput] = useState();
   const [selectProject, setSelectedProject] = useState();
 
@@ -23,8 +39,8 @@ function AddTask({ setIsOpen }) {
     setInput(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
+    if (!input || !selectProject) return;
     const data = await addTask(generated_id, input, selectProject);
     dispatch({
       type: "added",
@@ -33,20 +49,26 @@ function AddTask({ setIsOpen }) {
       projectId: data.projectId,
     });
     await getTaskData();
-    setIsOpen(false);
   };
 
   return (
     <>
-      <div className="darkBG" onClick={() => setIsOpen(false)} />
-      <div className="centered">
-        <div className="modal">
-          <header className="modalHeader">
-            <h1 className="heading">Add</h1>
-          </header>
-          <section className="modalContent">
-            <form onSubmit={handleSubmit}>
-              <select
+      <Modal isOpen={isOpen} onClose={onClose} size="xs">
+        <ModalOverlay
+          bg="blackAlpha.300"
+          backdropFilter="blur(10px) hue-rotate(90deg)"
+        />
+        <ModalContent>
+          <Center>
+            <ModalHeader>
+              <Heading>Add</Heading>
+            </ModalHeader>
+          </Center>
+          <ModalCloseButton />
+          <ModalBody>
+            <FormControl isRequired>
+              <FormLabel></FormLabel>
+              <Select
                 required
                 name="projects"
                 id="projects"
@@ -63,36 +85,54 @@ function AddTask({ setIsOpen }) {
                 ) : (
                   <option value="">No projects found</option>
                 )}
-              </select>
-              <input
+              </Select>
+              <br />
+              <FormLabel></FormLabel>
+              <Input
                 required
                 type="text"
                 name="taskName"
                 placeholder="Task name"
                 onChange={handleInputTask}
               />
-              {projectValue.project ? (
-                projectValue.project
-                  .filter((p) => p.id === selectProject)
-                  .map((p) => (
-                    <div
-                      key={p.id}
-                      style={{
-                        width: 25,
-                        height: 25,
-                        backgroundColor: p.color,
-                        marginLeft: 100,
-                      }}
-                    ></div>
-                  ))
-              ) : (
-                <div></div>
-              )}
-              <button type="submit">Add task</button>
-            </form>
-          </section>
-        </div>
-      </div>
+              <br />
+              <Center style={{ paddingTop: 15 }}>
+                {projectValue.project ? (
+                  projectValue.project
+                    .filter((p) => p.id === selectProject)
+                    .map((p) => (
+                      <Icon
+                        as={MdOutlineColorLens}
+                        w={25}
+                        h={25}
+                        key={p.id}
+                        style={{
+                          backgroundColor: p.color,
+                        }}
+                      ></Icon>
+                    ))
+                ) : (
+                  <div></div>
+                )}
+              </Center>
+              <br />
+              <Center>
+                <Button
+                  type="submit"
+                  colorScheme="blue"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleSubmit();
+                    onClose();
+                  }}
+                >
+                  Add task
+                </Button>
+              </Center>
+            </FormControl>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </>
   );
 }

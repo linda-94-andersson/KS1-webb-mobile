@@ -7,6 +7,7 @@
 * React Context 
 * React Router-dom
 * React Reducer 
+* Chakra-ui
 * .env
 * JavaScript
 * JSON 
@@ -52,7 +53,7 @@
 
 - Samtliga sidor under "Sidor som ska finnas" finns. (X)
 
-- Den ska vara byggd för en mobil-webbläsare i första hand (och behöver inte innehålla styling för desktop). ()
+- Den ska vara byggd för en mobil-webbläsare i första hand (och behöver inte innehålla styling för desktop). (X)
 
 - Innehålla en README.md där du redogjort för ditt (1) valda sätt att styla applikationen, samt samtliga npm-paket du valt att använda och varför. (Du kan exkludera React och React Router) ()
 

@@ -56,7 +56,7 @@
 
 - Innehålla en README.md där du redogjort för ditt (1) valda sätt att styla applikationen, samt samtliga npm-paket du valt att använda och varför. (Du kan exkludera React och React Router) ()
 
-- Den ska innehålla en "huvudnavigationsmeny" fixerad på botten på skärmen, som ska användas för att gå mellan de olika sidorna i applikationen (Tidtagning, kalender, överblick t.ex.). Om innehållet på sidan scrollar, ska den fortfarande vara fixerad på botten av applikationen. Den ska även visa vilken sida som är aktiv just nu på något vis. ()
+- Den ska innehålla en "huvudnavigationsmeny" fixerad på botten på skärmen, som ska användas för att gå mellan de olika sidorna i applikationen (Tidtagning, kalender, överblick t.ex.). Om innehållet på sidan scrollar, ska den fortfarande vara fixerad på botten av applikationen. Den ska även visa vilken sida som är aktiv just nu på något vis. (X)
 
 - När man lägger till ett "projekt" eller en "task" ska detta göras på antingen en separat sida eller i till exempel en modal. (X)
 

@@ -1,43 +1,92 @@
 import React from "react";
 import { useUser } from "../context/UserContext";
+import {
+  Center,
+  Heading,
+  Container,
+  Box,
+  Divider,
+  Text,
+  Flex,
+  Spacer,
+  Button,
+} from "@chakra-ui/react";
+import { Icon } from "@chakra-ui/icons";
+import { AiOutlinePlaySquare } from "react-icons/ai";
 
 function Timer() {
   const { userValue } = useUser();
 
   return (
     <>
-      <header>
-        <h2>Timer</h2>
-        <h1>Aktuell timer</h1>
-        <h3>Aktuell timer projekt namn</h3>
-        <div>
-          <h4>total</h4>
-          <span>timer</span>
-          <h4>today</h4>
-          <span>timer</span>
-        </div>
+      <header style={{ paddingBottom: 10 }}>
+        <Center style={{ paddingBottom: 50 }}>
+          <Heading as="h1" size="3xl">
+            Timer
+          </Heading>
+        </Center>
+        <Center>
+          <Heading as="h2" size="2xl">
+            Aktuell timer
+          </Heading>
+        </Center>
+        <Center style={{ paddingBottom: 50 }}>
+          <Heading as="h3" size="lg">
+            Aktuell timer projekt namn
+          </Heading>
+        </Center>
+        <Container>
+          <Flex>
+            <Box p="4">
+              <Heading as="h4" size="md">
+                total
+              </Heading>
+              <Text>timer</Text>
+            </Box>
+            <Spacer />
+            <Box p="4">
+              <Heading as="h4" size="md">
+                today
+              </Heading>
+              <Text>timer</Text>
+            </Box>
+          </Flex>
+        </Container>
+        <Divider />
       </header>
-      <section>
-        <div>
-          <h2>datum</h2>
-          <div>
-            <h2>
+      <Container>
+        <Box>
+          <Heading as="h2" size="md">
+            datum
+          </Heading>
+          <Container>
+            <Box>
               {userValue.user ? (
                 userValue.user.map((u) => (
-                  <p key={u.id}>
-                    <span>{u.name}</span>
-                  </p>
+                  <Box key={u.id}>
+                    <Heading as="h3" size="md">
+                      {u.name}
+                    </Heading>
+                  </Box>
                 ))
               ) : (
-                <span>No users found</span>
+                <Container>No users found</Container>
               )}
-            </h2>
-            <h3>taks</h3>
-            <h4>timer</h4>
-            <button>Play</button>
-          </div>
-        </div>
-      </section>
+            </Box>
+            <Heading as="h4" size="lg" style={{ display: "inline" }}>
+              tasks
+            </Heading>
+            <Button variant="link">
+              <Icon as={AiOutlinePlaySquare} w={250} h={25} />
+            </Button>
+            <Heading as="h4" size="md">
+              timer
+            </Heading>
+            <Divider />
+            <br />
+          </Container>
+        </Box>
+      </Container>
     </>
   );
 }

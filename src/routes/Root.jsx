@@ -23,8 +23,17 @@ function Root() {
         <ProjectProvider>
           <TaskProvider>
             <TimeLogProvider>
+              <Outlet />
               <Center>
-                <footer style={{ position: "fixed", bottom: 0 }}>
+                <footer
+                  style={{
+                    position: "fixed",
+                    bottom: 0,
+                    backgroundColor: "white",
+                    zIndex: 2,
+                    padding: "5px",
+                  }}
+                >
                   <Tabs>
                     <TabList>
                       <Tab>
@@ -46,7 +55,6 @@ function Root() {
                   </Tabs>
                 </footer>
               </Center>
-              <Outlet />
             </TimeLogProvider>
           </TaskProvider>
         </ProjectProvider>

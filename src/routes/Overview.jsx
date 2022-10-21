@@ -2,7 +2,15 @@ import React, { useState } from "react";
 import Projects from "../components/Projects";
 import Tasks from "../components/Tasks";
 import User from "../components/User";
-import { Center, Heading, Text, Tabs, TabList, Tab } from "@chakra-ui/react";
+import {
+  Center,
+  Heading,
+  Text,
+  Tabs,
+  TabList,
+  Tab,
+  Container,
+} from "@chakra-ui/react";
 
 function Overview() {
   const [isSelUser, setIsSelUser] = useState(true);
@@ -36,7 +44,7 @@ function Overview() {
           </Heading>
         </Center>
       </header>
-      <section>
+      <Container style={{ marginBottom: 150 }}>
         <Center>
           <Tabs>
             <TabList>
@@ -56,7 +64,7 @@ function Overview() {
         {isSelUser && <User setIsSelUser={setIsSelUser} />}
         {isSelPro && <Projects setIsSelPro={setIsSelPro} />}
         {isSelTas && <Tasks setIsSelTas={setIsSelTas} />}
-      </section>
+      </Container>
     </>
   );
 }

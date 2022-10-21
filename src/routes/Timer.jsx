@@ -54,7 +54,7 @@ function Timer() {
         </Container>
         <Divider />
       </header>
-      <Container>
+      <Container style={{ marginBottom: 150 }}>
         <Box>
           <Heading as="h2" size="md">
             datum

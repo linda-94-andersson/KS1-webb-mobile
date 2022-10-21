@@ -70,7 +70,7 @@ function Calendar() {
           </Heading>
         </Center>
       </header>
-      <Container>
+      <Container style={{ marginBottom: 150 }}>
         <Center>
           <DateRangePicker
             onChange={onChange}

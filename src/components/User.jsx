@@ -1,10 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import { useUser, useUserDispatch } from "../context/UserContext";
 import { deleteUser } from "../data/getUsers";
 import AddUser from "./AddUser";
+import {
+  Container,
+  Box,
+  Heading,
+  Button,
+  useDisclosure,
+  Divider,
+} from "@chakra-ui/react";
+import { Icon } from "@chakra-ui/icons";
+import { RiDeleteBack2Line } from "react-icons/ri";
 
 function User() {
-  const [isOpen, setIsOpen] = useState(false);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { userValue, getUserData } = useUser();
   const { dispatch } = useUserDispatch();
@@ -18,27 +28,35 @@ function User() {
     await getUserData();
   };
 
-  const handleAddUser = () => {
-    setIsOpen(true);
-  };
-
   return (
     <>
-      {userValue.user ? (
-        userValue.user.map((u) => (
-          <div key={u.id}>
-            <h2>{u.name}</h2>
-            <button onClick={() => handleDelete(u.id)}>Delete</button>
-          </div>
-        ))
-      ) : (
-        <div>
-          <h2>No users found</h2>
-        </div>
-      )}
-      <br />
-      <button onClick={handleAddUser}>Add new user</button>
-      {isOpen && <AddUser setIsOpen={setIsOpen} />}
+      <Container>
+        {userValue.user ? (
+          userValue.user.map((u) => (
+            <Container key={u.id}>
+              <Box>
+                <Heading style={{ display: "inline", paddingRight: 25 }}>
+                  {u.name}
+                </Heading>
+                <Button variant="link" onClick={() => handleDelete(u.id)}>
+                  <Icon as={RiDeleteBack2Line} w={25} h={25} />
+                </Button>
+              </Box>
+              <Divider />
+              <br />
+            </Container>
+          ))
+        ) : (
+          <Box>
+            <Heading>No users found</Heading>
+          </Box>
+        )}
+        <br />
+        <Button colorScheme="blue" onClick={onOpen}>
+          Add new user
+        </Button>
+        {isOpen && <AddUser isOpen={isOpen} onClose={onClose} />}
+      </Container>
     </>
   );
 }

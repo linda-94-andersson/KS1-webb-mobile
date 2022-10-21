@@ -2,9 +2,22 @@ import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
 import { addUser } from "../data/getUsers";
 import { useUser, useUserDispatch } from "../context/UserContext";
-import "./temporaryCss.css";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalCloseButton,
+  FormControl,
+  Input,
+  Button,
+  Heading,
+  Center,
+  FormLabel,
+} from "@chakra-ui/react";
 
-function AddUser({ setIsOpen }) {
+function AddUser({ isOpen, onClose }) {
   const [input, setInput] = useState("");
 
   const { getUserData } = useUser();
@@ -16,8 +29,8 @@ function AddUser({ setIsOpen }) {
     setInput(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
+    if (!input.trim()) return;
     const data = await addUser(generated_id, input);
     dispatch({
       type: "added",
@@ -25,31 +38,48 @@ function AddUser({ setIsOpen }) {
       name: data.name,
     });
     await getUserData();
-    setIsOpen(false);
   };
 
   return (
     <>
-      <div className="darkBG" onClick={() => setIsOpen(false)} />
-      <div className="centered">
-        <div className="modal">
-          <header className="modalHeader">
-            <h1 className="heading">Add</h1>
-          </header>
-          <section className="modalContent">
-            <form onSubmit={handleSubmit}>
-              <input
-                required
+      <Modal isOpen={isOpen} onClose={onClose} size="xs">
+        <ModalOverlay
+          bg="blackAlpha.300"
+          backdropFilter="blur(10px) hue-rotate(90deg)"
+        />
+        <ModalContent>
+          <Center>
+            <ModalHeader>
+              <Heading>Add</Heading>
+            </ModalHeader>
+          </Center>
+          <ModalCloseButton />
+          <ModalBody>
+            <FormControl isRequired>
+              <FormLabel></FormLabel>
+              <Input
                 type="text"
                 name="userName"
                 placeholder="User name"
                 onChange={handleInputUser}
               />
-              <button type="submit">Add User</button>
-            </form>
-          </section>
-        </div>
-      </div>
+              <Center style={{ paddingTop: 15 }}>
+                <Button
+                  type="submit"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleSubmit();
+                    onClose();
+                  }}
+                >
+                  Add User
+                </Button>
+              </Center>
+              <br />
+            </FormControl>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
     </>
   );
 }

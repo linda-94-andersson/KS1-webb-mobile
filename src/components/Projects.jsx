@@ -64,9 +64,9 @@ function Projects() {
             </Container>
           ))
         ) : (
-          <Boz>
+          <Box>
             <Heading>No projects found</Heading>
-          </Boz>
+          </Box>
         )}
         <br />
         <Button colorScheme="blue" onClick={onOpen}>

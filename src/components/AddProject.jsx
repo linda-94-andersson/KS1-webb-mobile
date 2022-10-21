@@ -18,10 +18,9 @@ import {
   Center,
   FormLabel,
   Select,
-  Text,
 } from "@chakra-ui/react";
 
-function AddProject({ isOpen, onClose, validColor, setValidColor }) {
+function AddProject({ isOpen, onClose, setValidColor }) {
   const [input, setInput] = useState();
   const [selectedUser, setSelectedUser] = useState();
   const [color, setColor] = useState({});

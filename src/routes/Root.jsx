@@ -4,14 +4,7 @@ import { ProjectProvider } from "../context/ProjectContext";
 import { TaskProvider } from "../context/TaskContext";
 import { TimeLogProvider } from "../context/TimeLogContext";
 import { UserProvider } from "../context/UserContext";
-import {
-  Link as ReachLink,
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
-} from "@chakra-ui/react";
+import { Link as ReachLink, Tabs, TabList, Tab } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/icons";
 import { MdTimer } from "react-icons/md";
 import { AiOutlineCalendar } from "react-icons/ai";

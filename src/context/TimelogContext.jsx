@@ -8,15 +8,15 @@ import React, {
 } from "react";
 import { getTimeLogs } from "../data/getTimeLogs";
 
-const TimeLogContext = React.createContext();
-const TimeLogDispatchContext = createContext(null);
+const TimelogContext = React.createContext();
+const TimelogDispatchContext = createContext(null);
 
 export function useTimeLog() {
-  return useContext(TimeLogContext);
+  return useContext(TimelogContext);
 }
 
 export function useTimeLogDispatch() {
-  return useContext(TimeLogDispatchContext);
+  return useContext(TimelogDispatchContext);
 }
 
 export function TimeLogProvider({ children }) {
@@ -63,10 +63,10 @@ export function TimeLogProvider({ children }) {
   }, []);
 
   return (
-    <TimeLogContext.Provider value={{ timeLogValue, getTimeLogData }}>
-      <TimeLogDispatchContext.Provider value={{ dispatchTimeLog }}>
+    <TimelogContext.Provider value={{ timeLogValue, getTimeLogData }}>
+      <TimelogDispatchContext.Provider value={{ dispatchTimeLog }}>
         {children}
-      </TimeLogDispatchContext.Provider>
-    </TimeLogContext.Provider>
+      </TimelogDispatchContext.Provider>
+    </TimelogContext.Provider>
   );
 }

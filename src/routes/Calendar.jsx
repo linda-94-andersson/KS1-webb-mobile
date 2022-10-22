@@ -1,26 +1,126 @@
-import React, { useState } from "react";
-import DateRangePicker from "@wojtekmaj/react-daterange-picker/dist/entry.nostyle";
+import React, { useMemo, useState, useCallback } from "react";
 import { useUser } from "../context/UserContext";
 import { useTask } from "../context/TaskContext";
 import { useProject } from "../context/ProjectContext";
-import { Center, Heading, Container, Box, Divider } from "@chakra-ui/react";
+import {
+  Center,
+  Heading,
+  Container,
+  Box,
+  Divider,
+  Input,
+  FormControl,
+  FormLabel,
+} from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/icons";
 import { MdOutlineColorLens } from "react-icons/md";
+import { useTimeLog } from "../context/TimeLogContext";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
 
 function Calendar() {
-  const [value, onChange] = useState([new Date(), new Date()]);
+  const [timestampNow, setTimestampNow] = useState(Date.now());
+  const [firstDateInput, setFirstDateInput] = useState(
+    dayjs(timestampNow).format("YYYY-MM-DD")
+  );
+  const [lastDateInput, setLastDateInput] = useState(
+    dayjs(timestampNow).format("YYYY-MM-DD")
+  );
 
   const { userValue } = useUser();
   const { projectValue } = useProject();
   const { taskValue } = useTask();
+  const { timeLogValue } = useTimeLog();
 
-  // console.log(value, " vad är value?");
+  dayjs.extend(customParseFormat);
+
+  const inputFirstAsTimestamp = useMemo(() => {
+    if (!firstDateInput) return null;
+    const dateString = `${firstDateInput}`;
+    return dayjs(dateString, "YYYY-MM-DD").valueOf() || null;
+  }, [firstDateInput]);
+
+  const inputLastAsTimestamp = useMemo(() => {
+    if (!lastDateInput) return null;
+    const dateString = `${lastDateInput}`;
+    return dayjs(dateString, "YYYY-MM-DD").valueOf() || null;
+  }, [lastDateInput]);
+
+  // console.log(inputFirstAsTimestamp, "this is input fist as timestamp");
+  // console.log(inputLastAsTimestamp, " this is input last as timestap");
+
+  const handleFirstInput = useCallback((e) => {
+    const value = e.target.value;
+    setFirstDateInput(value);
+  }, []);
+
+  const handleLastInput = useCallback((e) => {
+    const value = e.target.value;
+    setLastDateInput(value);
+  }, []);
+
+  const renderTimeOnRangeSelect = () => {
+    return (
+      <Container>
+        {timeLogValue.timeLogs
+          .filter((tl) => tl.start >= inputFirstAsTimestamp)
+          .filter((tl) => tl.start <= inputLastAsTimestamp)
+          .map((i) => (
+            <Container key={i.id}>
+              {taskValue.task
+                .filter((t) => t.id === i.taskId)
+                .map((t) => (
+                  <Box key={t.id}>
+                    {projectValue.project
+                      .filter((p) => p.id === t.projectId)
+                      .map((i) => (
+                        <Box key={i.id}>
+                          <Icon
+                            as={MdOutlineColorLens}
+                            w={25}
+                            h={25}
+                            key={i.id}
+                            style={{
+                              backgroundColor: i.color,
+                            }}
+                          ></Icon>
+                          {userValue.user
+                            .filter((u) => u.id === i.userId)
+                            .map((j) => (
+                              <Heading as="h3" size="md" key={j.id}>
+                                {j.name}
+                              </Heading>
+                            ))}
+                        </Box>
+                      ))}
+                    <Heading as="h2" size="lg">
+                      {t.name}
+                    </Heading>
+                    <Box>
+                      {timeLogValue.timeLogs
+                        .filter((tl) => tl.taskId === t.id)
+                        .map((k) => (
+                          <Heading as="h4" size="md" key={k.id}>
+                            {dayjs(k.start).format("YYYY-MM-DD")}
+                          </Heading>
+                        ))}
+                    </Box>
+                    <Divider />
+                    <br />
+                  </Box>
+                ))}
+            </Container>
+          ))}
+      </Container>
+    );
+  };
 
   const renderDayTaks = () => {
     return (
       <Container>
-        {taskValue.task ? (
-          taskValue.task.map((t) => (
+        {taskValue.task
+          .filter((t) => t.id === i.taskId)
+          .map((t) => (
             <Box key={t.id}>
               {projectValue.project
                 .filter((p) => p.id === t.projectId)
@@ -38,25 +138,28 @@ function Calendar() {
                     {userValue.user
                       .filter((u) => u.id === i.userId)
                       .map((j) => (
-                        <Heading as="h3" size="lg" key={j.id}>
+                        <Heading as="h3" size="md" key={j.id}>
                           {j.name}
                         </Heading>
                       ))}
                   </Box>
                 ))}
-              <Heading as="h2" size="2xl">
+              <Heading as="h2" size="lg">
                 {t.name}
               </Heading>
-              <Heading as="h4" size="md">
-                timer
-              </Heading>
+              <Box>
+                {timeLogValue.timeLogs
+                  .filter((tl) => tl.taskId === t.id)
+                  .map((k) => (
+                    <Heading as="h4" size="md" key={k.id}>
+                      {dayjs(k.start).format("YYYY-MM-DD")}
+                    </Heading>
+                  ))}
+              </Box>
               <Divider />
               <br />
             </Box>
-          ))
-        ) : (
-          <Heading>No tasks found</Heading>
-        )}
+          ))}
       </Container>
     );
   };
@@ -72,15 +175,23 @@ function Calendar() {
       </header>
       <Container style={{ marginBottom: 150 }}>
         <Center>
-          <DateRangePicker
-            onChange={onChange}
-            value={value}
-            disableCalendar={true}
-            required={true}
-            showLeadingZeros={true}
-          />
+          <FormControl isRequired>
+            <FormLabel>From</FormLabel>
+            <Input
+              type="date"
+              value={firstDateInput}
+              onChange={handleFirstInput}
+            />
+            <FormLabel>To</FormLabel>
+            <Input
+              type="date"
+              value={lastDateInput}
+              onChange={handleLastInput}
+            />
+          </FormControl>
         </Center>
-        {renderDayTaks()}
+        <br />
+        {renderTimeOnRangeSelect()}
       </Container>
     </>
   );

@@ -8,6 +8,7 @@
 * React Router-dom
 * React Reducer 
 * Chakra-ui
+* dayjs
 * .env
 * JavaScript
 * JSON 
@@ -30,7 +31,7 @@
 - Skapa en task knuten till ett projekt (X)
 - Starta en tidtagning för en task ()
 - Stoppa en tidtagning ()
-- Se en lista på tidtagningar för ett specifikt datum ()
+- Se en lista på tidtagningar för ett specifikt datum (X)
 - Se en lista på projekt (X)
 - Se en lista på tasks (X)
 - Ta bort en tidtagning ()
@@ -68,7 +69,7 @@
 
 
 ## För att uppnå Väl Godkänt är kraven att:
-- Kunna välja ett tidsspan istället för bara ett specifikt datum i Kalender/historiks-vyn. (Datum & Tid) ()
+- Kunna välja ett tidsspan istället för bara ett specifikt datum i Kalender/historiks-vyn. (Datum & Tid) (X)
 
 - Kunna skapa/välja en användare och tidtagning/tasks/projekt individuella för vald användare. (X)
 

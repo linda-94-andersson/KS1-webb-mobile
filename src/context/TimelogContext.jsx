@@ -23,7 +23,7 @@ export function TimeLogProvider({ children }) {
   const initialState = [];
 
   const [timeLogs, setTimeLogs] = useState(null);
-  const [_, dispatch] = useReducer(timeLogReducer, initialState);
+  const [timelog, dispatchTimeLog] = useReducer(timeLogReducer, initialState);
 
   function timeLogReducer(timeLogs, action) {
     switch (action.type) {
@@ -49,7 +49,7 @@ export function TimeLogProvider({ children }) {
   }
 
   const timeLogValue = useMemo(
-    () => ({ timeLogs: timeLogs, setTimeLogs: setTimeLogs }),
+    () => ({ timeLogs, setTimeLogs }),
     [timeLogs, setTimeLogs]
   );
 
@@ -64,7 +64,7 @@ export function TimeLogProvider({ children }) {
 
   return (
     <TimeLogContext.Provider value={{ timeLogValue, getTimeLogData }}>
-      <TimeLogDispatchContext.Provider value={{ dispatch }}>
+      <TimeLogDispatchContext.Provider value={{ dispatchTimeLog }}>
         {children}
       </TimeLogDispatchContext.Provider>
     </TimeLogContext.Provider>

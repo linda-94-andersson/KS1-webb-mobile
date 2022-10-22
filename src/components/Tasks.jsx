@@ -22,12 +22,12 @@ function Tasks() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { taskValue, getTaskData } = useTask();
-  const { dispatch } = useTaskDispatch();
+  const { dispatchTask } = useTaskDispatch();
   const { projectValue } = useProject();
 
   const handleDelete = async (id) => {
     const data = await deleteTask(id);
-    dispatch({
+    dispatchTask({
       type: "deleted",
       id: data,
     });
@@ -81,12 +81,7 @@ function Tasks() {
           Add new Tasks
         </Button>
         {isOpen && (
-          <AddTask
-            isOpen={isOpen}
-            onClose={onClose}
-            validColor={validColor}
-            setValidColor={setValidColor}
-          />
+          <AddTask isOpen={isOpen} onClose={onClose} validColor={validColor} />
         )}
       </Container>
     </>

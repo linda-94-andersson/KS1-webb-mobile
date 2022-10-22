@@ -23,7 +23,7 @@ export function TaskProvider({ children }) {
   const initialState = [];
 
   const [task, setTask] = useState(null);
-  const [tasks, dispatch] = useReducer(taskReducer, initialState);
+  const [tasks, dispatchTask] = useReducer(taskReducer, initialState);
 
   function taskReducer(tasks, action) {
     switch (action.type) {
@@ -61,7 +61,7 @@ export function TaskProvider({ children }) {
 
   return (
     <TaskContext.Provider value={{ taskValue, getTaskData }}>
-      <TaskDispatchContext.Provider value={{ dispatch }}>
+      <TaskDispatchContext.Provider value={{ dispatchTask }}>
         {children}
       </TaskDispatchContext.Provider>
     </TaskContext.Provider>

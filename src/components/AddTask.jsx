@@ -20,7 +20,7 @@ import {
 } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/icons";
 import { MdOutlineColorLens } from "react-icons/md";
-import { useTimeLogDispatch } from "../context/TimeLogContext";
+import { useTimeLog, useTimeLogDispatch } from "../context/TimeLogContext";
 import { addTimeLogs } from "../data/getTimeLogs";
 
 function AddTask({ isOpen, onClose }) {
@@ -30,6 +30,7 @@ function AddTask({ isOpen, onClose }) {
   const { projectValue } = useProject();
   const { getTaskData } = useTask();
   const { dispatchTask } = useTaskDispatch();
+  const { getTimeLogData } = useTimeLog();
   const { dispatchTimeLog } = useTimeLogDispatch();
 
   const generated_id = uuid();
@@ -60,6 +61,7 @@ function AddTask({ isOpen, onClose }) {
       taskId: res.taskId,
     });
     await getTaskData();
+    await getTimeLogData();
   };
 
   return (

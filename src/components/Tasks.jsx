@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useProject } from "../context/ProjectContext";
 import { useTask, useTaskDispatch } from "../context/TaskContext";
 import { deleteTask } from "../data/getTasks";
@@ -10,15 +10,12 @@ import {
   Button,
   useDisclosure,
   Divider,
-  Center,
-  Text,
 } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/icons";
 import { MdOutlineColorLens } from "react-icons/md";
 import { RiDeleteBack2Line } from "react-icons/ri";
 
 function Tasks() {
-  const [validColor, setValidColor] = useState(true);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { taskValue, getTaskData } = useTask();
@@ -37,11 +34,6 @@ function Tasks() {
   return (
     <>
       <Container>
-        {!validColor && (
-          <Center style={{ paddingBottom: 25 }}>
-            <Text>Please use a diffrent color</Text>
-          </Center>
-        )}
         {taskValue.task ? (
           taskValue.task.map((t) => (
             <Container key={t.id}>
@@ -80,9 +72,7 @@ function Tasks() {
         <Button colorScheme="blue" onClick={onOpen}>
           Add new Tasks
         </Button>
-        {isOpen && (
-          <AddTask isOpen={isOpen} onClose={onClose} validColor={validColor} />
-        )}
+        {isOpen && <AddTask isOpen={isOpen} onClose={onClose} />}
       </Container>
     </>
   );

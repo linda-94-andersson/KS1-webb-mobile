@@ -22,6 +22,7 @@
     "react-icons": "^4.6.0",
     "react-input-color": "^4.0.1",
     "react-router-dom": "^6.4.2",
+    "timer-node": "^5.0.6",
     "uuid": "^9.0.0"
   },
   "devDependencies": {

@@ -46,9 +46,6 @@ function Calendar() {
     return dayjs(dateString, "YYYY-MM-DD").valueOf() || null;
   }, [lastDateInput]);
 
-  // console.log(inputFirstAsTimestamp, "this is input fist as timestamp");
-  // console.log(inputLastAsTimestamp, " this is input last as timestap");
-
   const handleFirstInput = useCallback((e) => {
     const value = e.target.value;
     setFirstDateInput(value);
@@ -63,8 +60,9 @@ function Calendar() {
     return (
       <Container>
         {timeLogValue.timeLogs
-          .filter((tl) => tl.start >= inputFirstAsTimestamp)
-          .filter((tl) => tl.start <= inputLastAsTimestamp)
+          .filter((tl) => tl.startDate >= inputFirstAsTimestamp)
+          .filter((tl) => tl.startDate <= inputLastAsTimestamp)
+          .sort((a, b) => a.startDate - b.startDate)
           .map((i) => (
             <Container key={i.id}>
               {taskValue.task
@@ -73,22 +71,22 @@ function Calendar() {
                   <Box key={t.id}>
                     {projectValue.project
                       .filter((p) => p.id === t.projectId)
-                      .map((i) => (
-                        <Box key={i.id}>
+                      .map((j) => (
+                        <Box key={j.id}>
                           <Icon
                             as={MdOutlineColorLens}
                             w={25}
                             h={25}
-                            key={i.id}
+                            key={j.id}
                             style={{
-                              backgroundColor: i.color,
+                              backgroundColor: j.color,
                             }}
                           ></Icon>
                           {userValue.user
-                            .filter((u) => u.id === i.userId)
-                            .map((j) => (
-                              <Heading as="h3" size="md" key={j.id}>
-                                {j.name}
+                            .filter((u) => u.id === j.userId)
+                            .map((k) => (
+                              <Heading as="h3" size="md" key={k.id}>
+                                {k.name}
                               </Heading>
                             ))}
                         </Box>
@@ -99,9 +97,9 @@ function Calendar() {
                     <Box>
                       {timeLogValue.timeLogs
                         .filter((tl) => tl.taskId === t.id)
-                        .map((k) => (
-                          <Heading as="h4" size="md" key={k.id}>
-                            {dayjs(k.start).format("YYYY-MM-DD")}
+                        .map((l) => (
+                          <Heading as="h4" size="md" key={l.id}>
+                            {dayjs(l.startDate).format("YYYY-MM-DD")}
                           </Heading>
                         ))}
                     </Box>
@@ -110,55 +108,6 @@ function Calendar() {
                   </Box>
                 ))}
             </Container>
-          ))}
-      </Container>
-    );
-  };
-
-  const renderDayTaks = () => {
-    return (
-      <Container>
-        {taskValue.task
-          .filter((t) => t.id === i.taskId)
-          .map((t) => (
-            <Box key={t.id}>
-              {projectValue.project
-                .filter((p) => p.id === t.projectId)
-                .map((i) => (
-                  <Box key={i.id}>
-                    <Icon
-                      as={MdOutlineColorLens}
-                      w={25}
-                      h={25}
-                      key={i.id}
-                      style={{
-                        backgroundColor: i.color,
-                      }}
-                    ></Icon>
-                    {userValue.user
-                      .filter((u) => u.id === i.userId)
-                      .map((j) => (
-                        <Heading as="h3" size="md" key={j.id}>
-                          {j.name}
-                        </Heading>
-                      ))}
-                  </Box>
-                ))}
-              <Heading as="h2" size="lg">
-                {t.name}
-              </Heading>
-              <Box>
-                {timeLogValue.timeLogs
-                  .filter((tl) => tl.taskId === t.id)
-                  .map((k) => (
-                    <Heading as="h4" size="md" key={k.id}>
-                      {dayjs(k.start).format("YYYY-MM-DD")}
-                    </Heading>
-                  ))}
-              </Box>
-              <Divider />
-              <br />
-            </Box>
           ))}
       </Container>
     );

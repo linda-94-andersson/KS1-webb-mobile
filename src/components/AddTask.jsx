@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
-import { addTask } from "../data/getTasks";
 import { useTask, useTaskDispatch } from "../context/TaskContext";
 import { useProject } from "../context/ProjectContext";
+import { useTimeLog, useTimeLogDispatch } from "../context/TimeLogContext";
+import { addTask } from "../data/getTasks";
+import { addTimeLogs } from "../data/getTimeLogs";
 import {
   Modal,
   ModalOverlay,
@@ -20,8 +22,6 @@ import {
 } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/icons";
 import { MdOutlineColorLens } from "react-icons/md";
-import { useTimeLog, useTimeLogDispatch } from "../context/TimeLogContext";
-import { addTimeLogs } from "../data/getTimeLogs";
 
 function AddTask({ isOpen, onClose }) {
   const [input, setInput] = useState();
@@ -45,18 +45,18 @@ function AddTask({ isOpen, onClose }) {
 
   const handleSubmit = async () => {
     if (!input || !selectProject) return;
-    const data = await addTask(generated_id, input, selectProject);
+    const data = await addTask(generated_id, input, Date.now(), selectProject);
     dispatchTask({
       type: "added",
       id: data.id,
       name: data.name,
+      createdDate: data.createdDate,
       projectId: data.projectId,
     });
-    const res = await addTimeLogs(uuid(), Date.now(), null, null, data.id);
+    const res = await addTimeLogs(uuid(), null, null, data.id);
     dispatchTimeLog({
       type: "added",
       id: res.data,
-      startDate: res.startDate,
       startTime: res.startTime,
       endTime: res.endTime,
       taskId: res.taskId,
@@ -90,8 +90,8 @@ function AddTask({ isOpen, onClose }) {
                 onChange={handleSelectProject}
               >
                 <option value="">Pick a project</option>
-                {projectValue.project ? (
-                  projectValue.project.map((p) => (
+                {projectValue.projects ? (
+                  projectValue.projects.map((p) => (
                     <option key={p.id} value={p.id}>
                       {p.name}
                     </option>
@@ -111,8 +111,8 @@ function AddTask({ isOpen, onClose }) {
               />
               <br />
               <Center style={{ paddingTop: 15 }}>
-                {projectValue.project ? (
-                  projectValue.project
+                {projectValue.projects ? (
+                  projectValue.projects
                     .filter((p) => p.id === selectProject)
                     .map((p) => (
                       <Icon

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
-import { addUser } from "../data/getUsers";
 import { useUser, useUserDispatch } from "../context/UserContext";
+import { addUser } from "../data/getUsers";
 import {
   Modal,
   ModalOverlay,

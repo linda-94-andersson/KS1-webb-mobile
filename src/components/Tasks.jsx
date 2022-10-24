@@ -1,6 +1,7 @@
 import React from "react";
 import { useProject } from "../context/ProjectContext";
 import { useTask, useTaskDispatch } from "../context/TaskContext";
+import { useTimeLog } from "../context/TimeLogContext";
 import { deleteTask } from "../data/getTasks";
 import AddTask from "./AddTask";
 import {
@@ -21,6 +22,7 @@ function Tasks() {
   const { taskValue, getTaskData } = useTask();
   const { dispatchTask } = useTaskDispatch();
   const { projectValue } = useProject();
+  const { getTimeLogData } = useTimeLog();
 
   const handleDelete = async (id) => {
     const data = await deleteTask(id);
@@ -29,16 +31,17 @@ function Tasks() {
       id: data,
     });
     await getTaskData();
+    await getTimeLogData();
   };
 
   return (
     <>
       <Container>
-        {taskValue.task ? (
-          taskValue.task.map((t) => (
+        {taskValue.tasks ? (
+          taskValue.tasks.map((t) => (
             <Container key={t.id}>
               <Box>
-                {projectValue.project
+                {projectValue.projects
                   .filter((p) => p.id === t.projectId)
                   .map((c) => (
                     <Box key={c.id} style={{ display: "inline" }}>

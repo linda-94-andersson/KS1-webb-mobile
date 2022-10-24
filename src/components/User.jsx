@@ -1,5 +1,8 @@
 import React from "react";
 import { useUser, useUserDispatch } from "../context/UserContext";
+import { useProject } from "../context/ProjectContext";
+import { useTask } from "../context/TaskContext";
+import { useTimeLog } from "../context/TimeLogContext";
 import { deleteUser } from "../data/getUsers";
 import AddUser from "./AddUser";
 import {
@@ -18,6 +21,9 @@ function User() {
 
   const { userValue, getUserData } = useUser();
   const { dispatch } = useUserDispatch();
+  const { getProjectData } = useProject();
+  const { getTaskData } = useTask();
+  const { getTimeLogsData } = useTimeLog();
 
   const handleDelete = async (id) => {
     const data = await deleteUser(id);
@@ -26,13 +32,16 @@ function User() {
       id: data,
     });
     await getUserData();
+    await getProjectData();
+    await getTaskData();
+    await getTimeLogsData();
   };
 
   return (
     <>
       <Container>
-        {userValue.user ? (
-          userValue.user.map((u) => (
+        {userValue.users ? (
+          userValue.users.map((u) => (
             <Container key={u.id}>
               <Box>
                 <Heading style={{ display: "inline", paddingRight: 25 }}>

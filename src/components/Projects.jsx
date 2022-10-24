@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useProject, useProjectDisptach } from "../context/ProjectContext";
+import { useTask } from "../context/TaskContext";
+import { useTimeLog } from "../context/TimeLogContext";
 import { deleteProject } from "../data/getProjects";
 import AddProject from "./AddProject";
 import {
@@ -22,6 +24,8 @@ function Projects() {
 
   const { projectValue, getProjectData } = useProject();
   const { dispatch } = useProjectDisptach();
+  const { getTaskData } = useTask();
+  const { getTimeLogData } = useTimeLog();
 
   const handleDelete = async (id) => {
     const data = await deleteProject(id);
@@ -30,6 +34,8 @@ function Projects() {
       id: data,
     });
     await getProjectData();
+    await getTaskData();
+    await getTimeLogData();
   };
 
   return (
@@ -40,8 +46,8 @@ function Projects() {
             <Text>Please use a diffrent color</Text>
           </Center>
         )}
-        {projectValue.project ? (
-          projectValue.project.map((p) => (
+        {projectValue.projects ? (
+          projectValue.projects.map((p) => (
             <Container key={p.id}>
               <Box>
                 <Icon

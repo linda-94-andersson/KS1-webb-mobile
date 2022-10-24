@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
 import InputColor from "react-input-color";
-import { addProject } from "../data/getProjects";
 import { useProject, useProjectDisptach } from "../context/ProjectContext";
 import { useUser } from "../context/UserContext";
+import { addProject } from "../data/getProjects";
 import {
   Modal,
   ModalOverlay,
@@ -42,8 +42,8 @@ function AddProject({ isOpen, onClose, setValidColor }) {
   const handleSubmit = async () => {
     if (!input || !selectedUser) return;
     if (
-      projectValue.project.find((p) => p.color === color.hex) &&
-      projectValue.project.find((p) => p.userId === selectedUser)
+      projectValue.projects.find((p) => p.color === color.hex) &&
+      projectValue.projects.find((p) => p.userId === selectedUser)
     ) {
       return setValidColor(false);
     }
@@ -86,8 +86,8 @@ function AddProject({ isOpen, onClose, setValidColor }) {
                 onChange={handleSelectedUser}
               >
                 <option value="">Pick a user</option>
-                {userValue.user ? (
-                  userValue.user.map((u) => (
+                {userValue.users ? (
+                  userValue.users.map((u) => (
                     <option key={u.id} value={u.id}>
                       {u.name}
                     </option>

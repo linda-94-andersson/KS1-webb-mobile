@@ -4,7 +4,6 @@ import customParseFormat from "dayjs/plugin/customParseFormat";
 import { useUser } from "../context/UserContext";
 import { useTask } from "../context/TaskContext";
 import { useProject } from "../context/ProjectContext";
-import { useTimeLog } from "../context/TimeLogContext";
 import {
   Center,
   Heading,
@@ -32,7 +31,6 @@ function Calendar() {
   const { userValue } = useUser();
   const { projectValue } = useProject();
   const { taskValue } = useTask();
-  const { timeLogValue } = useTimeLog();
 
   const inputFirstAsTimestamp = useMemo(() => {
     if (!firstDateInput) return null;

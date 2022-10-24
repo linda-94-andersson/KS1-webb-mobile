@@ -22,8 +22,8 @@ export function useUserDispatch() {
 export function UserProvider({ children }) {
   const initialState = [];
 
-  const [user, setUser] = useState(null);
-  const [users, dispatch] = useReducer(userReducer, initialState);
+  const [users, setUser] = useState(null);
+  const [user, dispatch] = useReducer(userReducer, initialState);
 
   function userReducer(users, action) {
     switch (action.type) {
@@ -48,7 +48,7 @@ export function UserProvider({ children }) {
     }
   }
 
-  const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
+  const userValue = useMemo(() => ({ users, setUser }), [users, setUser]);
 
   const getUserData = async () => {
     const data = await getUsers();

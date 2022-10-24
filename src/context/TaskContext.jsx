@@ -22,8 +22,8 @@ export function useTaskDispatch() {
 export function TaskProvider({ children }) {
   const initialState = [];
 
-  const [task, setTask] = useState(null);
-  const [tasks, dispatchTask] = useReducer(taskReducer, initialState);
+  const [tasks, setTask] = useState(null);
+  const [task, dispatchTask] = useReducer(taskReducer, initialState);
 
   function taskReducer(tasks, action) {
     switch (action.type) {
@@ -48,7 +48,7 @@ export function TaskProvider({ children }) {
     }
   }
 
-  const taskValue = useMemo(() => ({ task, setTask }), [task, setTask]);
+  const taskValue = useMemo(() => ({ tasks, setTask }), [tasks, setTask]);
 
   const getTaskData = async () => {
     const data = await getTasks();

@@ -22,8 +22,8 @@ export function useProjectDisptach() {
 export function ProjectProvider({ children }) {
   const initialState = [];
 
-  const [project, setProject] = useState(null);
-  const [projects, dispatch] = useReducer(projectsReducer, initialState);
+  const [projects, setProject] = useState(null);
+  const [project, dispatch] = useReducer(projectsReducer, initialState);
 
   function projectsReducer(projects, action) {
     switch (action.type) {
@@ -49,8 +49,8 @@ export function ProjectProvider({ children }) {
   }
 
   const projectValue = useMemo(
-    () => ({ project, setProject }),
-    [project, setProject]
+    () => ({ projects, setProject }),
+    [projects, setProject]
   );
 
   const getProjectData = async () => {

@@ -1,7 +1,10 @@
 import React, { useMemo, useState, useCallback } from "react";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
 import { useUser } from "../context/UserContext";
 import { useTask } from "../context/TaskContext";
 import { useProject } from "../context/ProjectContext";
+import { useTimeLog } from "../context/TimeLogContext";
 import {
   Center,
   Heading,
@@ -14,9 +17,6 @@ import {
 } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/icons";
 import { MdOutlineColorLens } from "react-icons/md";
-import { useTimeLog } from "../context/TimeLogContext";
-import dayjs from "dayjs";
-import customParseFormat from "dayjs/plugin/customParseFormat";
 
 dayjs.extend(customParseFormat);
 
@@ -59,56 +59,49 @@ function Calendar() {
   const renderTimeOnRangeSelect = () => {
     return (
       <Container>
-        {timeLogValue.timeLogs ? (
-          timeLogValue.timeLogs
-            .filter((tl) => tl.startDate >= inputFirstAsTimestamp)
-            .filter((tl) => tl.startDate <= inputLastAsTimestamp)
-            .sort((a, b) => a.startDate - b.startDate)
-            .map((tl) => (
-              <Container key={tl.id}>
-                {taskValue.task
-                  .filter((t) => t.id === tl.taskId)
-                  .map((t) => (
-                    <Box key={t.id}>
-                      {projectValue.project
-                        .filter((p) => p.id === t.projectId)
-                        .map((p) => (
-                          <Box key={p.id}>
-                            <Icon
-                              as={MdOutlineColorLens}
-                              w={25}
-                              h={25}
-                              key={p.id}
-                              style={{
-                                backgroundColor: p.color,
-                              }}
-                            ></Icon>
-                            {userValue.user
-                              .filter((u) => u.id === p.userId)
-                              .map((u) => (
-                                <Heading as="h3" size="md" key={u.id}>
-                                  {u.name}
-                                </Heading>
-                              ))}
-                          </Box>
+        {taskValue.tasks ? (
+          taskValue.tasks
+            .filter(
+              (t) =>
+                t.createdDate >= inputFirstAsTimestamp &&
+                t.createdDate <= inputLastAsTimestamp
+            )
+            .sort((a, b) => a.createdDate - b.createdDate)
+            .map((t) => (
+              <Box key={t.id}>
+                {projectValue.projects
+                  .filter((p) => p.id === t.projectId)
+                  .map((p) => (
+                    <Box key={p.id}>
+                      <Icon
+                        as={MdOutlineColorLens}
+                        w={25}
+                        h={25}
+                        key={p.id}
+                        style={{
+                          backgroundColor: p.color,
+                        }}
+                      ></Icon>
+                      {userValue.users
+                        .filter((u) => u.id === p.userId)
+                        .map((u) => (
+                          <Heading as="h3" size="md" key={u.id}>
+                            {u.name}
+                          </Heading>
                         ))}
-                      <Heading as="h2" size="lg">
-                        {t.name}
-                      </Heading>
-                      <Box>
-                        {timeLogValue.timeLogs
-                          .filter((tl) => tl.taskId === t.id)
-                          .map((tl) => (
-                            <Heading as="h4" size="md" key={tl.id}>
-                              {dayjs(tl.startDate).format("YYYY-MM-DD")}
-                            </Heading>
-                          ))}
-                      </Box>
-                      <Divider />
-                      <br />
                     </Box>
                   ))}
-              </Container>
+                <Heading as="h2" size="lg">
+                  {t.name}
+                </Heading>
+                <Box>
+                  <Heading as="h4" size="md" key={t.id}>
+                    {dayjs(t.createdDate).format("YYYY-MM-DD")}
+                  </Heading>
+                </Box>
+                <Divider />
+                <br />
+              </Box>
             ))
         ) : (
           <Heading>No tasks found</Heading>

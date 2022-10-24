@@ -1,5 +1,8 @@
 import React from "react";
 import { useUser } from "../context/UserContext";
+import { useProject } from "../context/ProjectContext";
+import { useTask } from "../context/TaskContext";
+import { useTimeLog } from "../context/TimeLogContext";
 import {
   Center,
   Heading,
@@ -13,9 +16,16 @@ import {
 } from "@chakra-ui/react";
 import { Icon } from "@chakra-ui/icons";
 import { AiOutlinePlaySquare } from "react-icons/ai";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
 
 function Timer() {
   const { userValue } = useUser();
+  const { projectValue } = useProject();
+  const { taskValue } = useTask();
+  const { timeLogValue } = useTimeLog();
+
+  dayjs.extend(customParseFormat);
 
   return (
     <>
@@ -54,38 +64,67 @@ function Timer() {
         </Container>
         <Divider />
       </header>
-      <Container style={{ marginBottom: 150 }}>
-        <Box>
-          <Heading as="h2" size="md">
-            datum
-          </Heading>
-          <Container>
-            <Box>
-              {userValue.user ? (
-                userValue.user.map((u) => (
-                  <Box key={u.id}>
-                    <Heading as="h3" size="md">
-                      {u.name}
-                    </Heading>
-                  </Box>
-                ))
-              ) : (
-                <Container>No users found</Container>
-              )}
-            </Box>
-            <Heading as="h4" size="lg" style={{ display: "inline" }}>
-              tasks
-            </Heading>
-            <Button variant="link">
-              <Icon as={AiOutlinePlaySquare} w={250} h={25} />
-            </Button>
-            <Heading as="h4" size="md">
-              timer
-            </Heading>
-            <Divider />
-            <br />
-          </Container>
-        </Box>
+      <Container style={{ marginLeft: 15, marginBottom: 150 }}>
+        {timeLogValue.timeLogs ? (
+          timeLogValue.timeLogs
+            .sort((a, b) => b.startDate - a.startDate)
+            .map((tl) => (
+              <Box key={tl.id}>
+                <Heading as="h2" size="md">
+                  {dayjs(tl.startDate).format("YYYY-MM-DD")}
+                </Heading>
+                <Container>
+                  {taskValue.task &&
+                    taskValue.task
+                      .filter((t) => t.id === tl.taskId)
+                      .map((i) => (
+                        <Box key={i.id}>
+                          {projectValue.project &&
+                            projectValue.project
+                              .filter((p) => p.id === i.projectId)
+                              .map((j) => (
+                                <Box key={j.id}>
+                                  <Box>
+                                    {userValue.user &&
+                                      userValue.user
+                                        .filter((u) => u.id === j.userId)
+                                        .map((k) => (
+                                          <Box key={k.id}>
+                                            <Heading as="h3" size="md">
+                                              {k.name}
+                                            </Heading>
+                                          </Box>
+                                        ))}
+                                  </Box>
+                                  <Heading
+                                    as="h4"
+                                    size="lg"
+                                    style={{ display: "inline" }}
+                                  >
+                                    {i.name}
+                                  </Heading>
+                                  <Button variant="link">
+                                    <Icon
+                                      as={AiOutlinePlaySquare}
+                                      w={250}
+                                      h={25}
+                                    />
+                                  </Button>
+                                  <Heading as="h4" size="md">
+                                    {tl.startTime}
+                                  </Heading>
+                                  <Divider />
+                                  <br />
+                                </Box>
+                              ))}
+                        </Box>
+                      ))}
+                </Container>
+              </Box>
+            ))
+        ) : (
+          <Heading>No tasks found</Heading>
+        )}
       </Container>
     </>
   );

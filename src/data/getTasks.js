@@ -8,13 +8,14 @@ export const getTasks = async () => {
   return data;
 };
 
-export const addTask = async (id, name, projectId) => {
+export const addTask = async (id, name, createdDate, projectId) => {
   const res = await axios.request({
     method: "post",
     url: `http://${import.meta.env.VITE_SOME_KEY}/tasks`,
     data: {
       id: id,
       name: name,
+      createdDate: createdDate,
       projectId: projectId,
     },
   });

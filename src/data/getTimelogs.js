@@ -8,19 +8,12 @@ export const getTimeLogs = async () => {
   return data;
 };
 
-export const addTimeLogs = async (
-  id,
-  startDate,
-  startTime,
-  endTime,
-  taskId
-) => {
+export const addTimeLogs = async (id, startTime, endTime, taskId) => {
   const res = await axios.request({
     method: "post",
     url: `http://${import.meta.env.VITE_SOME_KEY}/timelogs`,
     data: {
       id: id,
-      startDate: startDate,
       startTime: startTime,
       endTime: endTime,
       taskId: taskId,

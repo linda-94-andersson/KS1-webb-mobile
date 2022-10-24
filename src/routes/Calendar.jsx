@@ -59,56 +59,60 @@ function Calendar() {
   const renderTimeOnRangeSelect = () => {
     return (
       <Container>
-        {timeLogValue.timeLogs
-          .filter((tl) => tl.startDate >= inputFirstAsTimestamp)
-          .filter((tl) => tl.startDate <= inputLastAsTimestamp)
-          .sort((a, b) => a.startDate - b.startDate)
-          .map((i) => (
-            <Container key={i.id}>
-              {taskValue.task
-                .filter((t) => t.id === i.taskId)
-                .map((t) => (
-                  <Box key={t.id}>
-                    {projectValue.project
-                      .filter((p) => p.id === t.projectId)
-                      .map((j) => (
-                        <Box key={j.id}>
-                          <Icon
-                            as={MdOutlineColorLens}
-                            w={25}
-                            h={25}
-                            key={j.id}
-                            style={{
-                              backgroundColor: j.color,
-                            }}
-                          ></Icon>
-                          {userValue.user
-                            .filter((u) => u.id === j.userId)
-                            .map((k) => (
-                              <Heading as="h3" size="md" key={k.id}>
-                                {k.name}
-                              </Heading>
-                            ))}
-                        </Box>
-                      ))}
-                    <Heading as="h2" size="lg">
-                      {t.name}
-                    </Heading>
-                    <Box>
-                      {timeLogValue.timeLogs
-                        .filter((tl) => tl.taskId === t.id)
-                        .map((l) => (
-                          <Heading as="h4" size="md" key={l.id}>
-                            {dayjs(l.startDate).format("YYYY-MM-DD")}
-                          </Heading>
+        {timeLogValue.timeLogs ? (
+          timeLogValue.timeLogs
+            .filter((tl) => tl.startDate >= inputFirstAsTimestamp)
+            .filter((tl) => tl.startDate <= inputLastAsTimestamp)
+            .sort((a, b) => a.startDate - b.startDate)
+            .map((i) => (
+              <Container key={i.id}>
+                {taskValue.task
+                  .filter((t) => t.id === i.taskId)
+                  .map((t) => (
+                    <Box key={t.id}>
+                      {projectValue.project
+                        .filter((p) => p.id === t.projectId)
+                        .map((j) => (
+                          <Box key={j.id}>
+                            <Icon
+                              as={MdOutlineColorLens}
+                              w={25}
+                              h={25}
+                              key={j.id}
+                              style={{
+                                backgroundColor: j.color,
+                              }}
+                            ></Icon>
+                            {userValue.user
+                              .filter((u) => u.id === j.userId)
+                              .map((k) => (
+                                <Heading as="h3" size="md" key={k.id}>
+                                  {k.name}
+                                </Heading>
+                              ))}
+                          </Box>
                         ))}
+                      <Heading as="h2" size="lg">
+                        {t.name}
+                      </Heading>
+                      <Box>
+                        {timeLogValue.timeLogs
+                          .filter((tl) => tl.taskId === t.id)
+                          .map((l) => (
+                            <Heading as="h4" size="md" key={l.id}>
+                              {dayjs(l.startDate).format("YYYY-MM-DD")}
+                            </Heading>
+                          ))}
+                      </Box>
+                      <Divider />
+                      <br />
                     </Box>
-                    <Divider />
-                    <br />
-                  </Box>
-                ))}
-            </Container>
-          ))}
+                  ))}
+              </Container>
+            ))
+        ) : (
+          <Heading>No tasks found</Heading>
+        )}
       </Container>
     );
   };

@@ -52,12 +52,13 @@ function AddTask({ isOpen, onClose }) {
       name: data.name,
       projectId: data.projectId,
     });
-    const res = await addTimeLogs(uuid(), Date.now(), null, data.id);
+    const res = await addTimeLogs(uuid(), Date.now(), null, null, data.id);
     dispatchTimeLog({
       type: "added",
       id: res.data,
-      start: res.start,
-      end: res.end,
+      startDate: res.startDate,
+      startTime: res.startTime,
+      endTime: res.endTime,
       taskId: res.taskId,
     });
     await getTaskData();

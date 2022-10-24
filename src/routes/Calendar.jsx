@@ -18,6 +18,8 @@ import { useTimeLog } from "../context/TimeLogContext";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 
+dayjs.extend(customParseFormat);
+
 function Calendar() {
   const [timestampNow, setTimestampNow] = useState(Date.now());
   const [firstDateInput, setFirstDateInput] = useState(
@@ -31,8 +33,6 @@ function Calendar() {
   const { projectValue } = useProject();
   const { taskValue } = useTask();
   const { timeLogValue } = useTimeLog();
-
-  dayjs.extend(customParseFormat);
 
   const inputFirstAsTimestamp = useMemo(() => {
     if (!firstDateInput) return null;
@@ -64,30 +64,30 @@ function Calendar() {
             .filter((tl) => tl.startDate >= inputFirstAsTimestamp)
             .filter((tl) => tl.startDate <= inputLastAsTimestamp)
             .sort((a, b) => a.startDate - b.startDate)
-            .map((i) => (
-              <Container key={i.id}>
+            .map((tl) => (
+              <Container key={tl.id}>
                 {taskValue.task
-                  .filter((t) => t.id === i.taskId)
+                  .filter((t) => t.id === tl.taskId)
                   .map((t) => (
                     <Box key={t.id}>
                       {projectValue.project
                         .filter((p) => p.id === t.projectId)
-                        .map((j) => (
-                          <Box key={j.id}>
+                        .map((p) => (
+                          <Box key={p.id}>
                             <Icon
                               as={MdOutlineColorLens}
                               w={25}
                               h={25}
-                              key={j.id}
+                              key={p.id}
                               style={{
-                                backgroundColor: j.color,
+                                backgroundColor: p.color,
                               }}
                             ></Icon>
                             {userValue.user
-                              .filter((u) => u.id === j.userId)
-                              .map((k) => (
-                                <Heading as="h3" size="md" key={k.id}>
-                                  {k.name}
+                              .filter((u) => u.id === p.userId)
+                              .map((u) => (
+                                <Heading as="h3" size="md" key={u.id}>
+                                  {u.name}
                                 </Heading>
                               ))}
                           </Box>
@@ -98,9 +98,9 @@ function Calendar() {
                       <Box>
                         {timeLogValue.timeLogs
                           .filter((tl) => tl.taskId === t.id)
-                          .map((l) => (
-                            <Heading as="h4" size="md" key={l.id}>
-                              {dayjs(l.startDate).format("YYYY-MM-DD")}
+                          .map((tl) => (
+                            <Heading as="h4" size="md" key={tl.id}>
+                              {dayjs(tl.startDate).format("YYYY-MM-DD")}
                             </Heading>
                           ))}
                       </Box>

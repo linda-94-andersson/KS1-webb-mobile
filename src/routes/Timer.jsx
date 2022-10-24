@@ -19,51 +19,16 @@ import { AiOutlinePlaySquare } from "react-icons/ai";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 
+dayjs.extend(customParseFormat);
+
 function Timer() {
   const { userValue } = useUser();
   const { projectValue } = useProject();
   const { taskValue } = useTask();
   const { timeLogValue } = useTimeLog();
 
-  dayjs.extend(customParseFormat);
-
-  return (
-    <>
-      <header style={{ paddingBottom: 10 }}>
-        <Center style={{ paddingBottom: 50 }}>
-          <Heading as="h1" size="3xl">
-            Timer
-          </Heading>
-        </Center>
-        <Center>
-          <Heading as="h2" size="2xl">
-            Aktuell timer
-          </Heading>
-        </Center>
-        <Center style={{ paddingBottom: 50 }}>
-          <Heading as="h3" size="lg">
-            Aktuell timer projekt namn
-          </Heading>
-        </Center>
-        <Container>
-          <Flex>
-            <Box p="4">
-              <Heading as="h4" size="md">
-                total
-              </Heading>
-              <Text>timer</Text>
-            </Box>
-            <Spacer />
-            <Box p="4">
-              <Heading as="h4" size="md">
-                today
-              </Heading>
-              <Text>timer</Text>
-            </Box>
-          </Flex>
-        </Container>
-        <Divider />
-      </header>
+  const renderTaskSortedDate = () => {
+    return (
       <Container style={{ marginLeft: 15, marginBottom: 150 }}>
         {timeLogValue.timeLogs ? (
           timeLogValue.timeLogs
@@ -126,6 +91,47 @@ function Timer() {
           <Heading>No tasks found</Heading>
         )}
       </Container>
+    );
+  };
+
+  return (
+    <>
+      <header style={{ paddingBottom: 10 }}>
+        <Center style={{ paddingBottom: 50 }}>
+          <Heading as="h1" size="3xl">
+            Timer
+          </Heading>
+        </Center>
+        <Center>
+          <Heading as="h2" size="2xl">
+            Aktuell timer
+          </Heading>
+        </Center>
+        <Center style={{ paddingBottom: 50 }}>
+          <Heading as="h3" size="lg">
+            Aktuell timer projekt namn
+          </Heading>
+        </Center>
+        <Container>
+          <Flex>
+            <Box p="4">
+              <Heading as="h4" size="md">
+                total
+              </Heading>
+              <Text>timer</Text>
+            </Box>
+            <Spacer />
+            <Box p="4">
+              <Heading as="h4" size="md">
+                today
+              </Heading>
+              <Text>timer</Text>
+            </Box>
+          </Flex>
+        </Container>
+        <Divider />
+      </header>
+      {renderTaskSortedDate()}
     </>
   );
 }

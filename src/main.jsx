@@ -5,7 +5,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import Root from "./routes/Root";
 import ErrorPage from "./Error.page";
 import Calendar from "./routes/Calendar";
-import Timer from "./routes/Timer";
+import TimerRender from "./routes/TimerRender";
 import Overview from "./routes/Overview";
 
 const router = createBrowserRouter([
@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Timer />,
+        element: <TimerRender />,
       },
       {
         path: "calendar",

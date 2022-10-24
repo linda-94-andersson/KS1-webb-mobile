@@ -43,20 +43,23 @@
   "timelogs": [
     {
       "id": "7c45b1cd-52c1-4529-8c2b-53e7cc3c5a6a",
-      "start": 1665093600000,
-      "end": null,
+      "startDate": 1665093600000,
+      "startTime": "",
+      "endTime": null,
       "taskId": "59169946-0199-40d2-aac3-932a4a48a541"
     },
     {
       "id": "a2390390-e467-4cee-8761-0786984770eb",
-      "start": 1666439288035,
-      "end": null,
+      "startDate": 1666439288035,
+      "startTime": "",
+      "endTime": null,
       "taskId": "5deac626-35d8-4452-849a-81dd8c8f3ba3"
     },
     {
       "id": "6a60b165-9c7a-4d70-8569-231f00e0b33d",
-      "start": 1666908000000,
-      "end": null,
+      "startDate": 1666908000000,
+      "startTime": "",
+      "endTime": null,
       "taskId": "00ba545f-792d-4d7a-b75c-1be888c8eb99"
     }
   ]

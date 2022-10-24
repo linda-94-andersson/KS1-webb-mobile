@@ -8,14 +8,21 @@ export const getTimeLogs = async () => {
   return data;
 };
 
-export const addTimeLogs = async (id, start, end, taskId) => {
+export const addTimeLogs = async (
+  id,
+  startDate,
+  startTime,
+  endTime,
+  taskId
+) => {
   const res = await axios.request({
     method: "post",
     url: `http://${import.meta.env.VITE_SOME_KEY}/timelogs`,
     data: {
       id: id,
-      start: start,
-      end: end,
+      startDate: startDate,
+      startTime: startTime,
+      endTime: endTime,
       taskId: taskId,
     },
   });
@@ -29,14 +36,14 @@ export const deleteTimeLogs = async (id) => {
   return;
 };
 
-export const changeTimeLogs = async (id, start, end) => {
+export const changeTimeLogs = async (id, startTime, endTime) => {
   const { data } = await axios.request({
     method: "patch",
     url: `http://${import.meta.env.VITE_SOME_KEY}/timelogs/${id}`,
     data: {
       id: id,
-      start: start,
-      end: end,
+      startTime: startTime,
+      endTime: endTime,
     },
   });
   return data;

@@ -32,7 +32,7 @@ export function TimeLogProvider({ children }) {
       }
       case "changed": {
         return timeLogs.map((tl) => {
-          if (tl.id === action.timelogs.id) {
+          if (tl === action.timelogs) {
             return action.timelogs;
           } else {
             return tl;

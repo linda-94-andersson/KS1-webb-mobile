@@ -9,6 +9,7 @@
 * React Reducer 
 * Chakra-ui
 * dayjs
+* timer-node 
 * .env
 * JavaScript
 * JSON 
@@ -29,8 +30,8 @@
 ## En användare ska kunna:
 - Skapa ett projekt (X)
 - Skapa en task knuten till ett projekt (X)
-- Starta en tidtagning för en task ()
-- Stoppa en tidtagning ()
+- Starta en tidtagning för en task (X)
+- Stoppa en tidtagning (X)
 - Se en lista på tidtagningar för ett specifikt datum (X)
 - Se en lista på projekt (X)
 - Se en lista på tasks (X)
@@ -65,7 +66,7 @@
 - "Överblick"-sidan ska innehålla två "tabbar", en för projekt och en för tasks som man ska kunna växla mellan på sidan. (X)
 
 - Tiden som visas på tidtagnings-sidan ska "ticka upp" när den är aktiv.
-  (Alltså för varje sekund som går, ska den visa det på skärmen) ()
+  (Alltså för varje sekund som går, ska den visa det på skärmen) (X)
 
 
 ## För att uppnå Väl Godkänt är kraven att:

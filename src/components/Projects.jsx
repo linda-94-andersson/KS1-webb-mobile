@@ -57,7 +57,7 @@ function Projects() {
                   style={{
                     backgroundColor: p.color,
                   }}
-                ></Icon>
+                />
                 <Heading style={{ display: "inline", padding: 25 }}>
                   {p.name}
                 </Heading>

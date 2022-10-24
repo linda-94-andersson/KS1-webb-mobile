@@ -43,16 +43,16 @@ function Tasks() {
               <Box>
                 {projectValue.projects
                   .filter((p) => p.id === t.projectId)
-                  .map((c) => (
-                    <Box key={c.id} style={{ display: "inline" }}>
+                  .map((p) => (
+                    <Box key={p.id} style={{ display: "inline" }}>
                       <Icon
                         as={MdOutlineColorLens}
                         w={25}
                         h={25}
                         style={{
-                          backgroundColor: c.color,
+                          backgroundColor: p.color,
                         }}
-                      ></Icon>
+                      />
                       <Heading style={{ display: "inline", padding: 25 }}>
                         {t.name}
                       </Heading>

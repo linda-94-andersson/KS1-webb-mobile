@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import { v4 as uuid } from "uuid";
 import { useTask, useTaskDispatch } from "../context/TaskContext";
 import { useProject } from "../context/ProjectContext";
-import { useTimeLog, useTimeLogDispatch } from "../context/TimeLogContext";
 import { addTask } from "../data/getTasks";
-import { addTimeLogs } from "../data/getTimeLogs";
 import {
   Modal,
   ModalOverlay,
@@ -30,8 +28,6 @@ function AddTask({ isOpen, onClose }) {
   const { projectValue } = useProject();
   const { getTaskData } = useTask();
   const { dispatchTask } = useTaskDispatch();
-  const { getTimeLogData } = useTimeLog();
-  const { dispatchTimeLog } = useTimeLogDispatch();
 
   const generated_id = uuid();
 
@@ -53,16 +49,7 @@ function AddTask({ isOpen, onClose }) {
       createdDate: data.createdDate,
       projectId: data.projectId,
     });
-    const res = await addTimeLogs(uuid(), null, null, data.id);
-    dispatchTimeLog({
-      type: "added",
-      id: res.data,
-      startTime: res.startTime,
-      endTime: res.endTime,
-      taskId: res.taskId,
-    });
     await getTaskData();
-    await getTimeLogData();
   };
 
   return (

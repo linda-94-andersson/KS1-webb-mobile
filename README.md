@@ -32,10 +32,10 @@
 - Skapa en task knuten till ett projekt (X)
 - Starta en tidtagning för en task (X)
 - Stoppa en tidtagning (X)
-- Se en lista på tidtagningar för ett specifikt datum (X)
+- Se en lista på tidtagningar för ett specifikt datum ()
 - Se en lista på projekt (X)
 - Se en lista på tasks (X)
-- Ta bort en tidtagning ()
+- Ta bort en tidtagning (X)
 - Ta bort en task (X)
 - Ta bort ett projekt (X)
 

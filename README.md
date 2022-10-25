@@ -22,25 +22,25 @@
 # Kunskapskontroll 1: Time-tracking-app
 
 ## Choice of styling
-- Chakra-ui
+- Chakra-ui:\
  I've chosen chakra-ui as my styling choice for this assignment. I'm used to working with Boostrap and decided I wanted to try something new. At first, I was looking at render components but that would be too much code for my files. Chakra has the benefit of doing the styling "for" me, and I like that I dont have to think how big a button should be or build a navbar from scratch. 
 
 ## Choice of packages
-- vite
+- vite:\
   I use Vite for creating my dev environment because I find it easy and lightweight to use versus npx-create-react-app. It has fewer "junk" files and comes with its own challenges. 
-- axios
+- axios:\
   Axios helps me to API calls with fewer lines of code. I don't need to declare JSON strings back and forth with my calls. 
-- uuid
+- uuid:\
   Uuid generates IDs with a long unique string every time it's called on, and that helps me not to worry about having a dubbel of an ID in my code. 
-- react-input-color
+- react-input-color:\
   React-input-color is a component that renders out a color box where the user can pick a color in different ways. It's used to set a color for a project so it's easier to tell them apart. 
-- husky / prettier / pretty-quick
+- husky / prettier / pretty-quick:\
   Together with Prettier and Husky setup, I don't have to worry about formatting my code every time. Since I like to work with autosave I don't want formatting on save when I write code. But this makes it so that I have to format manually every time. These scripts do it form whenever code is committed. 
-- @chakra-ui/react / @emotion/react / @emotion/styled / frammer-motion @chakra-ui/icons / react-icons
+- @chakra-ui/react / @emotion/react / @emotion/styled / frammer-motion @chakra-ui/icons / react-icons:\
   All above are used for my styling which has been motivated above. 
-- dayjs
+- dayjs:\
   Dayjs is used to generate and transform date and time. It was very handy to have when I worked with the calendar and timer components. 
-- timmer-node
+- timmer-node:\
   Timmer-node is used for starting and stopping timers. It helps create functions like start() and stop() so that I don't have to do it manually. 
 
 ## En användare ska kunna:

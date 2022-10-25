@@ -32,7 +32,7 @@
 - Skapa en task knuten till ett projekt (X)
 - Starta en tidtagning för en task (X)
 - Stoppa en tidtagning (X)
-- Se en lista på tidtagningar för ett specifikt datum ()
+- Se en lista på tidtagningar för ett specifikt datum (X)
 - Se en lista på projekt (X)
 - Se en lista på tasks (X)
 - Ta bort en tidtagning (X)
@@ -51,7 +51,7 @@
 
 - Applikationen ska använda React Context som "Store" för applikations-bred data. (X)
 
-- Samtliga krav under "En användare ska kunna" är uppfyllda. ()
+- Samtliga krav under "En användare ska kunna" är uppfyllda. (X)
 
 - Samtliga sidor under "Sidor som ska finnas" finns. (X)
 

@@ -43,7 +43,7 @@ function TimerRender() {
   const { dispatchTimeLog } = useTimeLogDispatch();
 
   const timer = new Timer();
-  const timeStart = dayjs(Date.now()).format("HH:mm:ss");
+  const timeStart = dayjs(Date.now()).format("YYYY-MM-DD HH:mm:ss");
   const intervalRef = useRef();
   const timeRef = useRef(new Timer());
   const timers = timeRef.current;
@@ -193,7 +193,7 @@ function TimerRender() {
                                     size="md"
                                     style={{ display: "inline" }}
                                   >
-                                    {tl.startTime}
+                                    {dayjs(tl.startTime).format("HH:mm:ss")}
                                   </Heading>
                                   <Heading
                                     as="h4"
@@ -204,7 +204,7 @@ function TimerRender() {
                                       marginRight: 15,
                                     }}
                                   >
-                                    {tl.endTime}
+                                    {dayjs(tl.endTime).format("HH:mm:ss")}
                                   </Heading>
                                   <Button
                                     value={tl.id}

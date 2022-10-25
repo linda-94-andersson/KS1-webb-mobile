@@ -7,7 +7,11 @@ import { useUser } from "../context/UserContext";
 import { useProject } from "../context/ProjectContext";
 import { useTask } from "../context/TaskContext";
 import { useTimeLog, useTimeLogDispatch } from "../context/TimeLogContext";
-import { addTimeLogs, changeTimeLogs } from "../data/getTimeLogs";
+import {
+  addTimeLogs,
+  changeTimeLogs,
+  deleteTimeLogs,
+} from "../data/getTimeLogs";
 import {
   Center,
   Heading,
@@ -44,13 +48,16 @@ function TimerRender() {
   const timeRef = useRef(new Timer());
   const timers = timeRef.current;
 
-  const handlePick = (e) => {
+  const handlePickTask = (e) => {
     setCurrentTask(e.target.value);
+  };
+
+  const handlePickLog = (e) => {
+    setCurrentTimeLog(e.target.value);
   };
 
   const handleStartTimer = async () => {
     if (!currentTask) return;
-    console.log("I clicked!");
     const data = await addTimeLogs(uuid(), currentTime, null, currentTask);
     dispatchTimeLog({
       type: "added",
@@ -77,7 +84,6 @@ function TimerRender() {
   const handleStop = async () => {
     if (!currentTimeLog) return;
     const data = await changeTimeLogs(currentTimeLog, currentTime, timeStart);
-    console.log(data, " this is data from api");
     dispatchTimeLog({
       type: "changed",
       id: data.id,
@@ -87,7 +93,6 @@ function TimerRender() {
     timers.stop();
     stopTime();
     setCurrentTime(null);
-    setCurrentTimeLog(null);
     await getTimeLogData();
   };
 
@@ -96,8 +101,15 @@ function TimerRender() {
     setLogTime(timers.format("%label %dd-%hh:%mm:%ss"));
   };
 
-  const handleDelete = () => {
-    return;
+  const handleDelete = async () => {
+    if (!currentTimeLog) return;
+    const data = await deleteTimeLogs(currentTimeLog);
+    dispatchTimeLog({
+      type: "deleted",
+      id: data,
+    });
+    setCurrentTimeLog(null);
+    await getTimeLogData();
   };
 
   const renderTaskSortedDate = () => {
@@ -152,35 +164,70 @@ function TimerRender() {
                     <Heading as="h4" size="lg">
                       {t.name}
                     </Heading>
-                    <Heading as="h4" size="md" style={{ display: "inline" }}>
-                      starttid
-                    </Heading>
-                    <Heading
-                      as="h4"
-                      size="md"
-                      style={{ display: "inline", marginLeft: 15 }}
-                    >
-                      stoptid
-                    </Heading>
                     <Box>
                       <Button
                         value={t.id}
                         colorScheme="blue"
-                        onClick={handlePick}
+                        onClick={handlePickTask}
                       >
-                        Choose me!
+                        Press to select this task!
                       </Button>
                       {currentTask === t.id && (
                         <>
+                          <Heading as="h4" size="md">
+                            {logTime}
+                          </Heading>
                           <Button variant="link" onClick={handleStartTimer}>
                             <Icon as={AiOutlinePlaySquare} w={25} h={25} />
                           </Button>
                           <Button variant="link" onClick={handleStop}>
                             <Icon as={AiOutlineStop} w={25} h={25} />
                           </Button>
-                          <Button variant="link" onClick={handleDelete}>
-                            <Icon as={RiDeleteBack2Line} w={25} h={25} />
-                          </Button>
+                          {!currentTime &&
+                            timeLogValue.timeLogs
+                              .filter((tl) => tl.taskId === t.id)
+                              .map((tl) => (
+                                <Box key={tl.id}>
+                                  <Heading
+                                    as="h4"
+                                    size="md"
+                                    style={{ display: "inline" }}
+                                  >
+                                    {tl.startTime}
+                                  </Heading>
+                                  <Heading
+                                    as="h4"
+                                    size="md"
+                                    style={{
+                                      display: "inline",
+                                      marginLeft: 15,
+                                      marginRight: 15,
+                                    }}
+                                  >
+                                    {tl.endTime}
+                                  </Heading>
+                                  <Button
+                                    value={tl.id}
+                                    colorScheme="blue"
+                                    variant="link"
+                                    onClick={handlePickLog}
+                                  >
+                                    Pick to delete!
+                                  </Button>
+                                  {currentTimeLog === tl.id && (
+                                    <Button
+                                      variant="link"
+                                      onClick={handleDelete}
+                                    >
+                                      <Icon
+                                        as={RiDeleteBack2Line}
+                                        w={25}
+                                        h={25}
+                                      />
+                                    </Button>
+                                  )}
+                                </Box>
+                              ))}
                         </>
                       )}
                     </Box>
@@ -221,9 +268,21 @@ function TimerRender() {
           </Heading>
         </Center>
         <Center style={{ paddingBottom: 50 }}>
-          <Heading as="h3" size="lg">
-            Aktuell timer projekt namn
-          </Heading>
+          <>
+            {currentTask &&
+              projectValue.projects.map((p) => (
+                <Box key={p.id}>
+                  {taskValue.tasks
+                    .filter((t) => t.id === currentTask)
+                    .filter((t) => t.projectId === p.id)
+                    .map((t) => (
+                      <Heading as="h3" size="lg" key={t.id}>
+                        {p.name}
+                      </Heading>
+                    ))}
+                </Box>
+              ))}
+          </>
         </Center>
         <Container>
           <Flex>

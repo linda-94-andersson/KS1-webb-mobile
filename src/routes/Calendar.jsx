@@ -4,6 +4,7 @@ import customParseFormat from "dayjs/plugin/customParseFormat";
 import { useUser } from "../context/UserContext";
 import { useTask } from "../context/TaskContext";
 import { useProject } from "../context/ProjectContext";
+import { useTimeLog } from "../context/TimeLogContext";
 import {
   Center,
   Heading,
@@ -31,6 +32,7 @@ function Calendar() {
   const { userValue } = useUser();
   const { projectValue } = useProject();
   const { taskValue } = useTask();
+  const { timeLogValue } = useTimeLog();
 
   const inputFirstAsTimestamp = useMemo(() => {
     if (!firstDateInput) return null;
@@ -57,48 +59,54 @@ function Calendar() {
   const renderTimeOnRangeSelect = () => {
     return (
       <Container>
-        {taskValue.tasks ? (
-          taskValue.tasks
+        {timeLogValue.timeLogs ? (
+          timeLogValue.timeLogs
             .filter(
-              (t) =>
-                t.createdDate >= inputFirstAsTimestamp &&
-                t.createdDate <= inputLastAsTimestamp
+              (tl) =>
+                dayjs(tl.startTime).valueOf() >= inputFirstAsTimestamp &&
+                dayjs(tl.startTime).valueOf() <= inputLastAsTimestamp
             )
-            .sort((a, b) => a.createdDate - b.createdDate)
-            .map((t) => (
-              <Box key={t.id}>
-                {projectValue.projects
-                  .filter((p) => p.id === t.projectId)
-                  .map((p) => (
-                    <Box key={p.id}>
-                      <Icon
-                        as={MdOutlineColorLens}
-                        w={25}
-                        h={25}
-                        key={p.id}
-                        style={{
-                          backgroundColor: p.color,
-                        }}
-                      ></Icon>
-                      {userValue.users
-                        .filter((u) => u.id === p.userId)
-                        .map((u) => (
-                          <Heading as="h3" size="md" key={u.id}>
-                            {u.name}
-                          </Heading>
+            .sort((a, b) => a.startTime - b.startTime)
+            .map((tl) => (
+              <Box key={tl.id}>
+                {taskValue.tasks
+                  .filter((t) => t.id === tl.taskId)
+                  .map((t) => (
+                    <Box key={t.id}>
+                      {projectValue.projects
+                        .filter((p) => p.id === t.projectId)
+                        .map((p) => (
+                          <Box key={p.id}>
+                            <Icon
+                              as={MdOutlineColorLens}
+                              w={25}
+                              h={25}
+                              key={p.id}
+                              style={{
+                                backgroundColor: p.color,
+                              }}
+                            ></Icon>
+                            {userValue.users
+                              .filter((u) => u.id === p.userId)
+                              .map((u) => (
+                                <Heading as="h3" size="md" key={u.id}>
+                                  {u.name}
+                                </Heading>
+                              ))}
+                          </Box>
                         ))}
+                      <Heading as="h2" size="lg">
+                        {t.name}
+                      </Heading>
+                      <Box>
+                        <Heading as="h4" size="md" key={t.id}>
+                          {dayjs(tl.startTime).format("YY/MM/DD HH:mm:ss")}
+                        </Heading>
+                      </Box>
+                      <Divider />
+                      <br />
                     </Box>
                   ))}
-                <Heading as="h2" size="lg">
-                  {t.name}
-                </Heading>
-                <Box>
-                  <Heading as="h4" size="md" key={t.id}>
-                    {dayjs(t.createdDate).format("YYYY-MM-DD")}
-                  </Heading>
-                </Box>
-                <Divider />
-                <br />
               </Box>
             ))
         ) : (
@@ -111,11 +119,21 @@ function Calendar() {
   return (
     <>
       <header style={{ paddingBottom: 50 }}>
-        <Center>
-          <Heading as="h1" size="3xl">
-            Calendar
-          </Heading>
-        </Center>
+        <Box>
+          <Center>
+            <Heading as="h1" size="3xl">
+              Calendar
+            </Heading>
+          </Center>
+        </Box>
+        <br />
+        <Box>
+          <Center>
+            <Heading as="h2" size="sm">
+              Choose a range of dates to see active tasks
+            </Heading>
+          </Center>
+        </Box>
       </header>
       <Container style={{ marginBottom: 150 }}>
         <Center>

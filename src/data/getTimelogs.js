@@ -29,13 +29,12 @@ export const deleteTimeLogs = async (id) => {
   return;
 };
 
-export const changeTimeLogs = async (id, startTime, endTime) => {
+export const changeTimeLogs = async (id, endTime) => {
   const { data } = await axios.request({
     method: "patch",
     url: `http://${import.meta.env.VITE_SOME_KEY}/timelogs/${id}`,
     data: {
       id: id,
-      startTime: startTime,
       endTime: endTime,
     },
   });

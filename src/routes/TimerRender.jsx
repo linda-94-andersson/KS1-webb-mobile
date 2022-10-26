@@ -1,7 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useMemo } from "react";
 import { v4 as uuid } from "uuid";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
+import duration from "dayjs/plugin/duration";
 import { Timer } from "timer-node";
 import { useUser } from "../context/UserContext";
 import { useProject } from "../context/ProjectContext";
@@ -29,12 +30,13 @@ import { MdOutlineColorLens } from "react-icons/md";
 import { RiDeleteBack2Line } from "react-icons/ri";
 
 dayjs.extend(customParseFormat);
+dayjs.extend(duration);
 
 function TimerRender() {
   const [currentTask, setCurrentTask] = useState();
   const [currentTimeLog, setCurrentTimeLog] = useState();
   const [currentTime, setCurrentTime] = useState();
-  const [logTime, setLogTime] = useState("0d-0h:0m:0s");
+  const [logTime, setLogTime] = useState();
 
   const { userValue } = useUser();
   const { projectValue } = useProject();
@@ -42,13 +44,20 @@ function TimerRender() {
   const { timeLogValue, getTimeLogData } = useTimeLog();
   const { dispatchTimeLog } = useTimeLogDispatch();
 
-  const timer = new Timer();
+  const timer = useRef(new Timer());
   const timeStart = dayjs(Date.now()).format("YYYY-MM-DD HH:mm:ss");
   const intervalRef = useRef();
-  const timeRef = useRef(new Timer());
-  const timers = timeRef.current;
+  const endTime =
+    timeLogValue.timeLogs &&
+    timeLogValue.timeLogs.find((tl) => tl.endTime === null);
 
   const handlePickTask = (e) => {
+    if (endTime?.taskId === e.target.value) {
+      timer.current.start();
+      startTime();
+      setCurrentTime(endTime.startTime);
+      setCurrentTimeLog(endTime.id);
+    }
     setCurrentTask(e.target.value);
   };
 
@@ -58,7 +67,7 @@ function TimerRender() {
 
   const handleStartTimer = async () => {
     if (!currentTask) return;
-    const data = await addTimeLogs(uuid(), currentTime, null, currentTask);
+    const data = await addTimeLogs(uuid(), timeStart, null, currentTask);
     dispatchTimeLog({
       type: "added",
       id: data.id,
@@ -66,8 +75,7 @@ function TimerRender() {
       endTime: data.endTime,
       taskId: data.taskId,
     });
-    timer.start();
-    timers.start();
+    timer.current.start();
     startTime();
     setCurrentTime(timeStart);
     setCurrentTimeLog(data.id);
@@ -76,29 +84,29 @@ function TimerRender() {
 
   const startTime = () => {
     const id = setInterval(() => {
-      setLogTime(timers.format("%label %dd-%hh:%mm:%ss"));
+      setLogTime(timer.current.format("%label %dd-%hh:%mm:%ss"));
     }, 100);
     intervalRef.current = id;
   };
 
   const handleStop = async () => {
     if (!currentTimeLog) return;
-    const data = await changeTimeLogs(currentTimeLog, currentTime, timeStart);
+    console.log("I clicked!");
+    const data = await changeTimeLogs(currentTimeLog, timeStart);
     dispatchTimeLog({
       type: "changed",
       id: data.id,
       endTime: data.endTime,
     });
-    timer.stop();
-    timers.stop();
     stopTime();
     setCurrentTime(null);
     await getTimeLogData();
   };
 
   const stopTime = () => {
+    timer.current.stop();
     clearInterval(intervalRef.current);
-    setLogTime(timers.format("%label %dd-%hh:%mm:%ss"));
+    setLogTime(null);
   };
 
   const handleDelete = async () => {
@@ -111,6 +119,27 @@ function TimerRender() {
     setCurrentTimeLog(null);
     await getTimeLogData();
   };
+
+  const totalTime = useMemo(() => {
+    if (timeLogValue.timeLogs) {
+      const filterdTimes = timeLogValue.timeLogs.filter(
+        (tl) => tl.taskId === currentTask && tl.endTime
+      );
+      const elapsed = filterdTimes.reduce((sum, curr) => {
+        return (
+          sum +
+          (dayjs(curr.endTime).valueOf() - dayjs(curr.startTime).valueOf())
+        );
+      }, 0);
+      return endTime
+        ? elapsed + (Date.now() - dayjs(endTime.startTime).valueOf())
+        : elapsed;
+    }
+  }, [timeLogValue.timeLogs, currentTask]);
+
+  const showTotal = useMemo(() => {
+    return dayjs.duration(totalTime + logTime).format("DD-HH:mm:ss");
+  }, [totalTime, logTime]);
 
   const renderTaskSortedDate = () => {
     return (
@@ -264,7 +293,7 @@ function TimerRender() {
         </Center>
         <Center>
           <Heading as="h2" size="2xl">
-            {logTime}
+            {currentTask && logTime}
           </Heading>
         </Center>
         <Center style={{ paddingBottom: 50 }}>
@@ -290,7 +319,7 @@ function TimerRender() {
               <Heading as="h4" size="md">
                 total
               </Heading>
-              <Text>timer</Text>
+              <Text>{currentTask && showTotal}</Text>
             </Box>
             <Spacer />
             <Box p="4">

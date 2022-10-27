@@ -33,10 +33,10 @@ dayjs.extend(customParseFormat);
 dayjs.extend(duration);
 
 function TimerRender() {
-  const [currentTask, setCurrentTask] = useState();
-  const [currentTimeLog, setCurrentTimeLog] = useState();
+  const [currentTask, setCurrentTask] = useState(null);
+  const [currentTimeLog, setCurrentTimeLog] = useState(null);
   const [currentTime, setCurrentTime] = useState();
-  const [logTime, setLogTime] = useState();
+  const [logTime, setLogTime] = useState(0);
 
   const { userValue } = useUser();
   const { projectValue } = useProject();
@@ -45,11 +45,11 @@ function TimerRender() {
   const { dispatchTimeLog } = useTimeLogDispatch();
 
   const timer = useRef(new Timer());
-  const timeStart = dayjs(Date.now()).format("YYYY-MM-DD HH:mm:ss");
+  const timeStart = Date.now();
   const intervalRef = useRef();
   const endTime =
     timeLogValue.timeLogs &&
-    timeLogValue.timeLogs.find((tl) => tl.endTime === null);
+    timeLogValue.timeLogs.find((tl) => tl.endTime === 0);
 
   const handlePickTask = (e) => {
     if (endTime?.taskId === e.target.value) {
@@ -67,7 +67,7 @@ function TimerRender() {
 
   const handleStartTimer = async () => {
     if (!currentTask) return;
-    const data = await addTimeLogs(uuid(), timeStart, null, currentTask);
+    const data = await addTimeLogs(uuid(), timeStart, 0, currentTask);
     dispatchTimeLog({
       type: "added",
       id: data.id,
@@ -84,14 +84,13 @@ function TimerRender() {
 
   const startTime = () => {
     const id = setInterval(() => {
-      setLogTime(timer.current.format("%label %dd-%hh:%mm:%ss"));
+      setLogTime(timer.current.ms());
     }, 100);
     intervalRef.current = id;
   };
 
   const handleStop = async () => {
     if (!currentTimeLog) return;
-    console.log("I clicked!");
     const data = await changeTimeLogs(currentTimeLog, timeStart);
     dispatchTimeLog({
       type: "changed",
@@ -106,7 +105,7 @@ function TimerRender() {
   const stopTime = () => {
     timer.current.stop();
     clearInterval(intervalRef.current);
-    setLogTime(null);
+    setLogTime(0);
   };
 
   const handleDelete = async () => {
@@ -126,14 +125,9 @@ function TimerRender() {
         (tl) => tl.taskId === currentTask && tl.endTime
       );
       const elapsed = filterdTimes.reduce((sum, curr) => {
-        return (
-          sum +
-          (dayjs(curr.endTime).valueOf() - dayjs(curr.startTime).valueOf())
-        );
+        return sum + (curr.endTime - curr.startTime);
       }, 0);
-      return endTime
-        ? elapsed + (Date.now() - dayjs(endTime.startTime).valueOf())
-        : elapsed;
+      return endTime ? elapsed + (Date.now() - endTime.startTime) : elapsed;
     }
   }, [timeLogValue.timeLogs, currentTask]);
 
@@ -204,7 +198,7 @@ function TimerRender() {
                       {currentTask === t.id && (
                         <>
                           <Heading as="h4" size="md">
-                            {logTime}
+                            {dayjs(logTime).format("mm:ss")}
                           </Heading>
                           <Button variant="link" onClick={handleStartTimer}>
                             <Icon as={AiOutlinePlaySquare} w={25} h={25} />
@@ -293,7 +287,7 @@ function TimerRender() {
         </Center>
         <Center>
           <Heading as="h2" size="2xl">
-            {currentTask && logTime}
+            {showTotal}
           </Heading>
         </Center>
         <Center style={{ paddingBottom: 50 }}>
@@ -319,14 +313,14 @@ function TimerRender() {
               <Heading as="h4" size="md">
                 total
               </Heading>
-              <Text>{currentTask && showTotal}</Text>
+              <Text>{showTotal && showTotal}</Text>
             </Box>
             <Spacer />
             <Box p="4">
-              <Heading as="h4" size="md">
+              {/* <Heading as="h4" size="md">
                 today
               </Heading>
-              <Text>timer</Text>
+              <Text>timer</Text> */}
             </Box>
           </Flex>
         </Container>

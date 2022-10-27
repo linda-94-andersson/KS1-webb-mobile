@@ -3,10 +3,6 @@
     {
       "id": "f5c926fa-2d22-4d82-a7e6-db4e963a703c",
       "name": "Linda"
-    },
-    {
-      "id": "708b6d2e-3013-475e-8224-0a2b1c5f1095",
-      "name": "LindaTest"
     }
   ],
   "projects": [
@@ -15,18 +11,6 @@
       "name": "Filtrera tasks per datum",
       "color": "#d61c25ff",
       "userId": "f5c926fa-2d22-4d82-a7e6-db4e963a703c"
-    },
-    {
-      "id": "3afae3c1-7550-4185-8e8e-1b10e212e86b",
-      "name": "Timelog Test",
-      "color": "#58b52aff",
-      "userId": "708b6d2e-3013-475e-8224-0a2b1c5f1095"
-    },
-    {
-      "id": "4f864b04-d9c9-4002-94ce-ff01f3e05ad6",
-      "name": "More colors!",
-      "color": "#bb5de3ff",
-      "userId": "708b6d2e-3013-475e-8224-0a2b1c5f1095"
     }
   ],
   "tasks": [
@@ -53,37 +37,31 @@
       "name": "Jag syns den 24 okt",
       "createdDate": 1666596988307,
       "projectId": "51e295ee-80c3-44ea-b919-98a39350b8e1"
-    },
-    {
-      "id": "8ab1ea8c-ea7a-4269-95a4-50ac4d4c193b",
-      "name": "Task with out timelog",
-      "createdDate": 1666637250948,
-      "projectId": "3afae3c1-7550-4185-8e8e-1b10e212e86b"
-    },
-    {
-      "id": "65793a69-e696-4030-a9f9-c3b5db065b18",
-      "name": "I just want color!",
-      "createdDate": 1666639923883,
-      "projectId": "4f864b04-d9c9-4002-94ce-ff01f3e05ad6"
     }
   ],
   "timelogs": [
     {
-      "id": "48295510-258f-4cca-af42-c8a1e51d95e8",
-      "endTime": "23:28:17",
-      "taskId": "00ba545f-792d-4d7a-b75c-1be888c8eb99",
-      "startTime": "23:28:13"
+      "id": "8162c579-747d-4138-ae42-030055f9cf02",
+      "startTime": 1666868197292,
+      "endTime": 1666869599758,
+      "taskId": "00ba545f-792d-4d7a-b75c-1be888c8eb99"
     },
     {
-      "id": "dbad341a-c5b6-4a65-b3ad-4679c1037386",
-      "startTime": "23:28:28",
-      "endTime": "23:28:33",
-      "taskId": "65793a69-e696-4030-a9f9-c3b5db065b18"
+      "id": "942e9ab9-b1d4-470b-a6b0-e1d378e75b63",
+      "startTime": 1666869834421,
+      "endTime": 1666869842730,
+      "taskId": "00ba545f-792d-4d7a-b75c-1be888c8eb99"
     },
     {
-      "id": "f5dfd041-0e0d-473c-aab0-dfa0dab96283",
-      "startTime": "23:28:41",
-      "endTime": "23:28:46",
+      "id": "21066a3a-0fcf-4354-97c8-0a750647db99",
+      "startTime": 1666869906196,
+      "endTime": 1666870704498,
+      "taskId": "00ba545f-792d-4d7a-b75c-1be888c8eb99"
+    },
+    {
+      "id": "8cc22690-8954-4713-bc79-1596cfa37d57",
+      "startTime": 1666870856380,
+      "endTime": 1666872007678,
       "taskId": "00ba545f-792d-4d7a-b75c-1be888c8eb99"
     }
   ]

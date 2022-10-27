@@ -2,7 +2,6 @@
 * WORK IN PROGRESS
 
 ## Skills used for this project
-* WORK IN PROGRESS
 * React
 * React Context 
 * React Router-dom
@@ -90,4 +89,4 @@
 
 - Kunna skapa/välja en användare och tidtagning/tasks/projekt individuella för vald användare. (X)
 
-- Om en tidtagning är aktiv och sidan laddas om/stängs ner och öppnas upp senare, ska den återupptas och visa tiden från när den först startades. ()
+- Om en tidtagning är aktiv och sidan laddas om/stängs ner och öppnas upp senare, ska den återupptas och visa tiden från när den först startades. (X)

@@ -1,6 +1,6 @@
 {
   "User": {
-    "id": "string",
+    "id": { "string": "uuid" },
     "name": "string"
   },
   "Project": {

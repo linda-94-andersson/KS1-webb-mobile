@@ -1,18 +1,60 @@
 {
-  "Post": {
-    "title": {
-      "string": {}
-    },
-    "comments": {
-      "hasMany": "Comment"
+  "Users": [
+    {
+      "id": {
+        "string": {}
+      },
+      "name": {
+        "string": {}
+      }
     }
-  },
-  "Comment": {
-    "body": {
-      "string": {}
-    },
-    "post": {
-      "belongsTo": "Post"
+  ],
+  "Projects": [
+    {
+      "id": {
+        "string": {}
+      },
+      "name": {
+        "string": {}
+      },
+      "color": {
+        "string": {}
+      },
+      "userId": {
+        "string": {}
+      }
     }
-  }
+  ],
+  "Tasks": [
+    {
+      "id": {
+        "string": {}
+      },
+      "name": {
+        "string": {}
+      },
+      "createdDate": {
+        "int": {}
+      },
+      "projectId": {
+        "string": {}
+      }
+    }
+  ],
+  "Timelogs": [
+    {
+      "id": {
+        "string": {}
+      },
+      "startTime": {
+        "int": {}
+      },
+      "endTime": {
+        "int": {}
+      },
+      "taskId": {
+        "string": {}
+      }
+    }
+  ]
 }

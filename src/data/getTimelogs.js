@@ -2,7 +2,7 @@ import axios from "axios";
 
 const config = {
   headers: {
-    "x-api-key": `${import.meta.env.VITE_API_KEY}`,
+    "X-ACCESS-KEY": `${import.meta.env.VITE_API_KEY}`,
     "X-BIN-META": false,
   },
 };
@@ -20,7 +20,7 @@ export const addTimeLogs = async (id, startTime, endTime, taskId) => {
     method: "post",
     url: `http://${import.meta.env.VITE_URL_KEY}/timelogs`,
     headers: {
-      "x-api-key": `${import.meta.env.VITE_API_KEY}`,
+      "X-ACCESS-KEY": `${import.meta.env.VITE_API_KEY}`,
       "X-BIN-META": false,
     },
     data: {
@@ -46,7 +46,7 @@ export const changeTimeLogs = async (id, endTime) => {
     method: "patch",
     url: `http://${import.meta.env.VITE_URL_KEY}/timelogs/${id}`,
     headers: {
-      "x-api-key": `${import.meta.env.VITE_API_KEY}`,
+      "X-ACCESS-KEY": `${import.meta.env.VITE_API_KEY}`,
       "X-BIN-META": false,
     },
     data: {

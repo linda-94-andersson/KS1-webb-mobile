@@ -2,7 +2,7 @@ import axios from "axios";
 
 const config = {
   headers: {
-    "x-api-key": `${import.meta.env.VITE_API_KEY}`,
+    "X-ACCESS-KEY": `${import.meta.env.VITE_API_KEY}`,
     "X-BIN-META": false,
   },
 };
@@ -20,7 +20,7 @@ export const addProject = async (id, name, color, userId) => {
     method: "post",
     url: `http://${import.meta.env.VITE_URL_KEY}/projects`,
     headers: {
-      "x-api-key": `${import.meta.env.VITE_API_KEY}`,
+      "X-ACCESS-KEY": `${import.meta.env.VITE_API_KEY}`,
       "X-BIN-META": false,
     },
     data: {

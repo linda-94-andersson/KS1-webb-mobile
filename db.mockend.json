@@ -1,8 +1,12 @@
 {
   "users": [
     {
-      "id": "f5c926fa-2d22-4d82-a7e6-db4e963a703c",
-      "name": "Linda"
+      "id": {
+        "string": {}
+      },
+      "name": {
+        "string": {}
+      }
     }
   ],
   "projects": [

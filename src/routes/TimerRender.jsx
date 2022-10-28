@@ -197,9 +197,6 @@ function TimerRender() {
                       </Button>
                       {currentTask === t.id && (
                         <>
-                          <Heading as="h4" size="md">
-                            {dayjs(logTime).format("mm:ss")}
-                          </Heading>
                           <Button variant="link" onClick={handleStartTimer}>
                             <Icon as={AiOutlinePlaySquare} w={25} h={25} />
                           </Button>

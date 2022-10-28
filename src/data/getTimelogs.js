@@ -1,17 +1,8 @@
 import axios from "axios";
 
-const config = {
-  headers: {
-    "X-MASTER-KEY": `${import.meta.env.VITE_MASTER_KEY}`,
-    "X-ACCESS-KEY": `${import.meta.env.VITE_API_KEY}`,
-    "X-BIN-META": false,
-  },
-};
-
 export const getTimeLogs = async () => {
   const { data } = await axios.get(
-    `http://${import.meta.env.VITE_URL_KEY}/timelogs`,
-    config
+    `http://${import.meta.env.VITE_URL_KEY}/timelogs`
   );
   return data;
 };
@@ -20,11 +11,6 @@ export const addTimeLogs = async (id, startTime, endTime, taskId) => {
   const res = await axios.request({
     method: "post",
     url: `http://${import.meta.env.VITE_URL_KEY}/timelogs`,
-    headers: {
-      "X-MASTER-KEY": `${import.meta.env.VITE_MASTER_KEY}`,
-      "X-ACCESS-KEY": `${import.meta.env.VITE_API_KEY}`,
-      "X-BIN-META": false,
-    },
     data: {
       id: id,
       startTime: startTime,
@@ -37,8 +23,7 @@ export const addTimeLogs = async (id, startTime, endTime, taskId) => {
 
 export const deleteTimeLogs = async (id) => {
   const { data } = await axios.delete(
-    `http://${import.meta.env.VITE_URL_KEY}/timelogs/${id}`,
-    config
+    `http://${import.meta.env.VITE_URL_KEY}/timelogs/${id}`
   );
   return;
 };
@@ -47,11 +32,6 @@ export const changeTimeLogs = async (id, endTime) => {
   const { data } = await axios.request({
     method: "patch",
     url: `http://${import.meta.env.VITE_URL_KEY}/timelogs/${id}`,
-    headers: {
-      "X-MASTER-KEY": `${import.meta.env.VITE_MASTER_KEY}`,
-      "X-ACCESS-KEY": `${import.meta.env.VITE_API_KEY}`,
-      "X-BIN-META": false,
-    },
     data: {
       id: id,
       endTime: endTime,

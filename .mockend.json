@@ -1,60 +1,52 @@
 {
-  "Users": [
-    {
-      "id": {
-        "string": []
-      },
-      "name": {
-        "string": []
-      }
+  "Users": {
+    "id": {
+      "string": []
+    },
+    "name": {
+      "string": []
     }
-  ],
-  "Projects": [
-    {
-      "id": {
-        "string": []
-      },
-      "name": {
-        "string": []
-      },
-      "color": {
-        "string": []
-      },
-      "userId": {
-        "string": []
-      }
+  },
+  "Projects": {
+    "id": {
+      "string": []
+    },
+    "name": {
+      "string": []
+    },
+    "color": {
+      "string": []
+    },
+    "userId": {
+      "string": []
     }
-  ],
-  "Tasks": [
-    {
-      "id": {
-        "string": []
-      },
-      "name": {
-        "string": []
-      },
-      "createdDate": {
-        "int": []
-      },
-      "projectId": {
-        "string": []
-      }
+  },
+  "Tasks": {
+    "id": {
+      "string": []
+    },
+    "name": {
+      "string": []
+    },
+    "createdDate": {
+      "int": []
+    },
+    "projectId": {
+      "string": []
     }
-  ],
-  "Timelogs": [
-    {
-      "id": {
-        "string": []
-      },
-      "startTime": {
-        "int": []
-      },
-      "endTime": {
-        "int": []
-      },
-      "taskId": {
-        "string": []
-      }
+  },
+  "Timelogs": {
+    "id": {
+      "string": []
+    },
+    "startTime": {
+      "int": []
+    },
+    "endTime": {
+      "int": []
+    },
+    "taskId": {
+      "string": []
     }
-  ]
+  }
 }

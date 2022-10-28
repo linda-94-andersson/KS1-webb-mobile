@@ -23,10 +23,10 @@ dayjs.extend(customParseFormat);
 function Calendar() {
   const [timestampNow, setTimestampNow] = useState(Date.now());
   const [firstDateInput, setFirstDateInput] = useState(
-    dayjs(timestampNow).format("YYYY-MM-DD")
+    dayjs(timestampNow).format("YYYY-MM-DD HH:mm")
   );
   const [lastDateInput, setLastDateInput] = useState(
-    dayjs(timestampNow).format("YYYY-MM-DD")
+    dayjs(timestampNow).format("YYYY-MM-DD HH:mm")
   );
 
   const { userValue } = useUser();
@@ -37,13 +37,13 @@ function Calendar() {
   const inputFirstAsTimestamp = useMemo(() => {
     if (!firstDateInput) return null;
     const dateString = `${firstDateInput}`;
-    return dayjs(dateString, "YYYY-MM-DD").valueOf() || null;
+    return dayjs(dateString, "YYYY-MM-DD HH:mm").valueOf() || null;
   }, [firstDateInput]);
 
   const inputLastAsTimestamp = useMemo(() => {
     if (!lastDateInput) return null;
     const dateString = `${lastDateInput}`;
-    return dayjs(dateString, "YYYY-MM-DD").valueOf() || null;
+    return dayjs(dateString, "YYYY-MM-DD HH:mm").valueOf() || null;
   }, [lastDateInput]);
 
   const handleFirstInput = useCallback((e) => {
@@ -140,13 +140,13 @@ function Calendar() {
           <FormControl isRequired>
             <FormLabel>From</FormLabel>
             <Input
-              type="date"
+              type="datetime-local"
               value={firstDateInput}
               onChange={handleFirstInput}
             />
             <FormLabel>To</FormLabel>
             <Input
-              type="date"
+              type="datetime-local"
               value={lastDateInput}
               onChange={handleLastInput}
             />

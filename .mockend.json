@@ -2,58 +2,58 @@
   "Users": [
     {
       "id": {
-        "string": {}
+        "string": []
       },
       "name": {
-        "string": {}
+        "string": []
       }
     }
   ],
   "Projects": [
     {
       "id": {
-        "string": {}
+        "string": []
       },
       "name": {
-        "string": {}
+        "string": []
       },
       "color": {
-        "string": {}
+        "string": []
       },
       "userId": {
-        "string": {}
+        "string": []
       }
     }
   ],
   "Tasks": [
     {
       "id": {
-        "string": {}
+        "string": []
       },
       "name": {
-        "string": {}
+        "string": []
       },
       "createdDate": {
-        "int": {}
+        "int": []
       },
       "projectId": {
-        "string": {}
+        "string": []
       }
     }
   ],
   "Timelogs": [
     {
       "id": {
-        "string": {}
+        "string": []
       },
       "startTime": {
-        "int": {}
+        "int": []
       },
       "endTime": {
-        "int": {}
+        "int": []
       },
       "taskId": {
-        "string": {}
+        "string": []
       }
     }
   ]

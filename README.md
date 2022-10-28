@@ -1,5 +1,14 @@
 ## Deployment
-* WORK IN PROGRESS
+* To run the app clone the repo and run the followig in the terminal: 
+  ```
+  npm install -g json-server
+  ```
+  ```
+  json-server --watch db.json
+  ```
+  ```
+  npm run dev
+  ```
 
 ## Skills used for this project
 * React

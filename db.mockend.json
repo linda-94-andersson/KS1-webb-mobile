@@ -11,68 +11,50 @@
   ],
   "projects": [
     {
-      "id": "51e295ee-80c3-44ea-b919-98a39350b8e1",
-      "name": "Filtrera tasks per datum",
-      "color": "#d61c25ff",
-      "userId": "f5c926fa-2d22-4d82-a7e6-db4e963a703c"
+      "id": {
+        "string": {}
+      },
+      "name": {
+        "string": {}
+      },
+      "color": {
+        "string": {}
+      },
+      "userId": {
+        "string": {}
+      }
     }
   ],
   "tasks": [
     {
-      "id": "59169946-0199-40d2-aac3-932a4a48a541",
-      "name": "Jag syns den 7 okt",
-      "createdDate": 1665093600000,
-      "projectId": "51e295ee-80c3-44ea-b919-98a39350b8e1"
-    },
-    {
-      "id": "5deac626-35d8-4452-849a-81dd8c8f3ba3",
-      "name": "Jag syns den 22 okt",
-      "createdDate": 1666439288035,
-      "projectId": "51e295ee-80c3-44ea-b919-98a39350b8e1"
-    },
-    {
-      "id": "00ba545f-792d-4d7a-b75c-1be888c8eb99",
-      "name": "Jag syns den 28 okt ",
-      "createdDate": 1666908000000,
-      "projectId": "51e295ee-80c3-44ea-b919-98a39350b8e1"
-    },
-    {
-      "id": "e7c2cc9e-8c46-4037-8c65-0e2350925233",
-      "name": "Jag syns den 24 okt",
-      "createdDate": 1666596988307,
-      "projectId": "51e295ee-80c3-44ea-b919-98a39350b8e1"
+      "id": {
+        "string": {}
+      },
+      "name": {
+        "string": {}
+      },
+      "createdDate": {
+        "int": {}
+      },
+      "projectId": {
+        "string": {}
+      }
     }
   ],
   "timelogs": [
     {
-      "id": "8162c579-747d-4138-ae42-030055f9cf02",
-      "startTime": 1666868197292,
-      "endTime": 1666869599758,
-      "taskId": "00ba545f-792d-4d7a-b75c-1be888c8eb99"
-    },
-    {
-      "id": "942e9ab9-b1d4-470b-a6b0-e1d378e75b63",
-      "startTime": 1666869834421,
-      "endTime": 1666869842730,
-      "taskId": "00ba545f-792d-4d7a-b75c-1be888c8eb99"
-    },
-    {
-      "id": "21066a3a-0fcf-4354-97c8-0a750647db99",
-      "startTime": 1666869906196,
-      "endTime": 1666870704498,
-      "taskId": "00ba545f-792d-4d7a-b75c-1be888c8eb99"
-    },
-    {
-      "id": "8cc22690-8954-4713-bc79-1596cfa37d57",
-      "startTime": 1666870856380,
-      "endTime": 1666872007678,
-      "taskId": "00ba545f-792d-4d7a-b75c-1be888c8eb99"
-    },
-    {
-      "id": "45005185-15d6-41aa-b115-bc94fc6b9ce0",
-      "startTime": 1666872583674,
-      "endTime": 1666874123486,
-      "taskId": "e7c2cc9e-8c46-4037-8c65-0e2350925233"
+      "id": {
+        "string": {}
+      },
+      "startTime": {
+        "int": {}
+      },
+      "endTime": {
+        "int": {}
+      },
+      "taskId": {
+        "string": {}
+      }
     }
   ]
 }

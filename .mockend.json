@@ -1,24 +1,24 @@
 {
   "User": {
-    "id": "uuid",
-    "name": "name"
+    "id": "string",
+    "name": "string"
   },
   "Project": {
-    "id": "uuid",
-    "name": "name",
-    "color": "color",
-    "userId": "userId"
+    "id": "string",
+    "name": "string",
+    "color": "string",
+    "userId": "string"
   },
   "Task": {
-    "id": "uuid",
-    "name": "name",
-    "createdDate": "createdDate",
-    "projectId": "projectId"
+    "id": "string",
+    "name": "string",
+    "createdDate": "int",
+    "projectId": "string"
   },
   "Timelog": {
-    "id": "uuid",
-    "startTime": "startTime",
-    "endTime": "endTime",
-    "taskId": "taskId"
+    "id": "string",
+    "startTime": "int",
+    "endTime": "int",
+    "taskId": "string"
   }
 }

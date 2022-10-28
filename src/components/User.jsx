@@ -23,7 +23,7 @@ function User() {
   const { dispatch } = useUserDispatch();
   const { getProjectData } = useProject();
   const { getTaskData } = useTask();
-  const { getTimeLogsData } = useTimeLog();
+  const { getTimeLogData } = useTimeLog();
 
   const handleDelete = async (id) => {
     const data = await deleteUser(id);
@@ -34,7 +34,7 @@ function User() {
     await getUserData();
     await getProjectData();
     await getTaskData();
-    await getTimeLogsData();
+    await getTimeLogData();
   };
 
   return (

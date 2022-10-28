@@ -2,6 +2,7 @@ import axios from "axios";
 
 const config = {
   headers: {
+    "X-MASTER-KEY": `${import.meta.env.VITE_MASTER_KEY}`,
     "X-ACCESS-KEY": `${import.meta.env.VITE_API_KEY}`,
     "X-BIN-META": false,
   },
@@ -20,6 +21,7 @@ export const addTask = async (id, name, createdDate, projectId) => {
     method: "post",
     url: `http://${import.meta.env.VITE_URL_KEY}/tasks`,
     headers: {
+      "X-MASTER-KEY": `${import.meta.env.VITE_MASTER_KEY}`,
       "X-ACCESS-KEY": `${import.meta.env.VITE_API_KEY}`,
       "X-BIN-META": false,
     },
